@@ -12,12 +12,13 @@ class Customer extends Api
 {
     /**
      * @param array $param
-     *
-     * @link https://billogram.com/api/v2/customer
+     * @return string|array
+     * @link
      */
-    public function getAll(array $param)
+    public function search(array $param)
     {
-        $this->get('/customer', $param);
+        return $this->get('/customer', $param);
+
     }
 
     /**
@@ -25,23 +26,19 @@ class Customer extends Api
      * @param int   $customerNo
      * @param array $param
      *
-     * @link https://billogram.com/api/v2/customer/$customerNo
-     *
+     * @link https://billogram.com/api/documentation#customers_fetch
+     * @return \Billogram\Api\Models\Customers\Customer
      */
-    public function getOneCustomer(int $customerNo, array $param)
+    public function fetch(int $customerNo, array $param)
     {
-        if ($customerNo===0) {
-            throw new \InvalidArgumentException('Id cannot be empty');
-        }
-        $this->get('/customer/'.$customerNo, $param);
+        return $this->get('/customer/'.$customerNo, $param);
     }
 
     /**
      * @param Model $costumer
-     *
-     * @link https://billogram.com/api/v2/customer
+     * @link https://billogram.com/api/documentation#customers_create
      */
-    public function createOneCustomer(Model $costumer)
+    public function create(Model $costumer)
     {
         $this->post('/customer', $costumer->toArray());
     }
@@ -50,9 +47,9 @@ class Customer extends Api
      * @param int                       $customerNo
      * @param Models\Customers\Customer $costumer
      *
-     * @link https://billogram.com/api/v2/customer/$customerNo
+     * @link https://billogram.com/api/documentation#customers_edit
      */
-    public function updateOneCustomer(int $customerNo, Model $costumer)
+    public function update(int $customerNo, Model $costumer)
     {
         if ($customerNo===0) {
             throw new \InvalidArgumentException('Id cannot be empty');

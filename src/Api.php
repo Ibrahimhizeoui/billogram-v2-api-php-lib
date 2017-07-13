@@ -126,8 +126,9 @@ class Api
      * de-encoded data.
      *
      * @param $response
-     * @param null $expectContentType
+     * @param string $expectContentType
      *
+     * @return string|array
      * @throws InvalidAuthenticationError
      * @throws InvalidFieldCombinationError
      * @throws InvalidFieldValueError
@@ -141,9 +142,9 @@ class Api
      * @throws ServiceMalfunctioningError
      * @throws UnknownFieldError
      */
-    private function checkApiResponse(ResponseInterface $response, $expectContentType = null)
+    private function checkApiResponse(ResponseInterface $response, string $expectContentType = null)
     {
-        if ($response->getStatusCode() !== 200 || $expectContentType == null) {
+        if ($response->getStatusCode() !== 200 || $expectContentType === null) {
             $expectContentType = 'application/json';
         }
 
@@ -300,9 +301,10 @@ class Api
      *
      * @param string $objectUrl
      * @param array  $data
-     * @param null   $expectContentType
+     * @param string   $expectContentType
+     * @return string|array
      */
-    public function get(string $objectUrl, array $data = null, $expectContentType = null)
+    public function get(string $objectUrl, array $data = null, string $expectContentType = null)
     {
         $url = $this->apiBase.'/'.$objectUrl;
 
@@ -318,6 +320,8 @@ class Api
      *
      * @param string $objectUrl
      * @param array  $data
+     *
+     * @return string|array
      */
     public function post(string $objectUrl, array $data)
     {
@@ -342,6 +346,7 @@ class Api
      *
      * @param string $objectUrl
      * @param array  $data
+     * @return string|array
      */
     public function put(string $objectUrl, array $data)
     {
