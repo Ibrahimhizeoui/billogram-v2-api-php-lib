@@ -38,7 +38,6 @@ class CustomerDeliveryAddress
     private $country;
 
     /**
-     * CustomerDeliveryAddress constructor.
      *
      * @param string $name
      * @param string $streetAddress

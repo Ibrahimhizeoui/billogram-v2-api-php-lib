@@ -2,7 +2,12 @@
 
 namespace Billogram\Api\Models\Customers;
 
+
 use Billogram\Api\Models\Customer\CustomerContact;
+
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 
 class Customer
 {
@@ -51,30 +56,8 @@ class Customer
      */
     private $companyType;
 
-    /**
-     * Customer constructor.
-     *
-     * @param int                     $customerNo
-     * @param string                  $name
-     * @param string                  $notes
-     * @param string                  $orgNo
-     * @param string                  $vatNo
-     * @param CustomerContact         $contact
-     * @param CustomerBillingAddress  $address
-     * @param CustomerDeliveryAddress $deliveryAddress
-     * @param string                  $companyType
-     */
-    public function __construct($customerNo, $name, $notes, $orgNo, $vatNo, CustomerContact $contact, CustomerBillingAddress $address, CustomerDeliveryAddress $deliveryAddress, $companyType)
+    public function __construct()
     {
-        $this->customerNo = $customerNo;
-        $this->name = $name;
-        $this->notes = $notes;
-        $this->orgNo = $orgNo;
-        $this->vatNo = $vatNo;
-        $this->contact = $contact;
-        $this->address = $address;
-        $this->deliveryAddress = $deliveryAddress;
-        $this->companyType = $companyType;
     }
 
     /**
@@ -87,10 +70,13 @@ class Customer
 
     /**
      * @param int $customerNo
+     * @return Customer
      */
-    public function setCustomerNo(int $customerNo)
+    public function withCustomerNo(int $customerNo)
     {
-        $this->customerNo = $customerNo;
+        $new = clone $this;
+        $new->customerNo = $customerNo;
+        return $new;
     }
 
     /**
@@ -103,10 +89,13 @@ class Customer
 
     /**
      * @param string $name
+     * @return Customer
      */
-    public function setName(string $name)
+    public function withName(string $name)
     {
-        $this->name = $name;
+        $new = clone $this;
+        $new->name = $name;
+        return $new;
     }
 
     /**
@@ -119,10 +108,13 @@ class Customer
 
     /**
      * @param string $notes
+     * @return Customer
      */
-    public function setNotes(string $notes)
+    public function withNotes(string $notes)
     {
-        $this->notes = $notes;
+        $new = clone $this;
+        $new->notes = $notes;
+        return $new;
     }
 
     /**
@@ -135,10 +127,13 @@ class Customer
 
     /**
      * @param string $orgNo
+     * @return Customer
      */
-    public function setOrgNo(string $orgNo)
+    public function withOrgNo(string $orgNo)
     {
-        $this->orgNo = $orgNo;
+        $new = clone $this;
+        $new->orgNo = $orgNo;
+        return $new;
     }
 
     /**
@@ -151,10 +146,13 @@ class Customer
 
     /**
      * @param string $vatNo
+     * @return Customer
      */
-    public function setVatNo(string $vatNo)
+    public function withVatNo(string $vatNo)
     {
-        $this->vatNo = $vatNo;
+        $new = clone $this;
+        $new->vatNo = $vatNo;
+        return $new;
     }
 
     /**
@@ -167,10 +165,13 @@ class Customer
 
     /**
      * @param CustomerContact $contact
+     * @return Customer
      */
-    public function setContact(CustomerContact $contact)
+    public function withContact(CustomerContact $contact)
     {
-        $this->contact = $contact;
+        $new = clone $this;
+        $new->contact = $contact;
+        return $new;
     }
 
     /**
@@ -183,10 +184,13 @@ class Customer
 
     /**
      * @param CustomerBillingAddress $address
+     * @return Customer
      */
-    public function setAddress(CustomerBillingAddress $address)
+    public function withAddress(CustomerBillingAddress $address)
     {
-        $this->address = $address;
+        $new = clone $this;
+        $new->address = $address;
+        return $new;
     }
 
     /**
@@ -199,10 +203,13 @@ class Customer
 
     /**
      * @param CustomerDeliveryAddress $deliveryAddress
+     * @return Customer
      */
-    public function setDeliveryAddress(CustomerDeliveryAddress $deliveryAddress)
+    public function withDeliveryAddress(CustomerDeliveryAddress $deliveryAddress)
     {
-        $this->deliveryAddress = $deliveryAddress;
+        $new = clone $this;
+        $new->deliveryAddress = $deliveryAddress;
+        return $new;
     }
 
     /**
@@ -215,10 +222,13 @@ class Customer
 
     /**
      * @param string $companyType
+     * @return Customer
      */
-    public function setCompanyType(string $companyType)
+    public function withCompanyType(string $companyType)
     {
-        $this->companyType = $companyType;
+        $new = clone $this;
+        $new->companyType = $companyType;
+        return $new;
     }
 
     public function toArray()

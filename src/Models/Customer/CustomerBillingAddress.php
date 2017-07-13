@@ -38,7 +38,6 @@ class CustomerBillingAddress
     private $country;
 
     /**
-     * CustomerBillingAddress constructor.
      *
      * @param string $careOf
      * @param bool   $useCareOfAsAttention

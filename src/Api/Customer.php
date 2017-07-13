@@ -5,54 +5,58 @@ declare(strict_types=1);
 namespace Billogram\Api;
 
 use Billogram\Api;
+use Billogram\Api\Models\Customers\Customer as Model;
+
 
 class Customer extends Api
 {
     /**
      * @param array $param
+     *
+     * @link https://billogram.com/api/v2/customer
      */
     public function getAll(array $param)
     {
-        $this->get('customer', $param);
+        $this->get('/customer', $param);
     }
 
     /**
+     *
      * @param int   $customerNo
      * @param array $param
+     *
+     * @link https://billogram.com/api/v2/customer/$customerNo
+     *
      */
     public function getOneCustomer(int $customerNo, array $param)
     {
-        if (empty($customerNo)) {
+        if ($customerNo===0) {
             throw new \InvalidArgumentException('Id cannot be empty');
         }
-        $this->get('customer/'.$customerNo, $param);
+        $this->get('/customer/'.$customerNo, $param);
     }
 
     /**
-     * @param Models\Customers\Customer $costumer
+     * @param Model $costumer
+     *
+     * @link https://billogram.com/api/v2/customer
      */
-    public function createOneCustomer(Api\Models\Customers\Customer $costumer)
+    public function createOneCustomer(Model $costumer)
     {
-        $this->post('customer', $costumer->toArray());
+        $this->post('/customer', $costumer->toArray());
     }
 
     /**
      * @param int                       $customerNo
      * @param Models\Customers\Customer $costumer
+     *
+     * @link https://billogram.com/api/v2/customer/$customerNo
      */
-    public function updateOneCustomer(int $customerNo, Api\Models\Customers\Customer $costumer)
+    public function updateOneCustomer(int $customerNo, Model $costumer)
     {
-        if (empty($customerNo)) {
+        if ($customerNo===0) {
             throw new \InvalidArgumentException('Id cannot be empty');
         }
-        $this->put('customer/'.$customerNo, $costumer->toArray());
-    }
-
-    /**
-     * @param int $customerNo
-     */
-    public function deleteOneCustomer(int $customerNo)
-    {
-        //There is no delete method in the docs
+        $this->put('/customer/'.$customerNo, $costumer->toArray());
     }
 }

@@ -42,8 +42,6 @@ class BillogramClass extends SimpleClass
 /**
  *  Constructor sets the base url and significant id field for the resource.
  *
- * BillogramClass constructor.
- *
  * @param $api
  */
 public function __construct($api)

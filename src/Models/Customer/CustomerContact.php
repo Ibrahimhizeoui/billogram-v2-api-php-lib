@@ -25,7 +25,6 @@ class CustomerContact
     private $orgNo;
 
     /**
-     * CustomerContact constructor.
      *
      * @param string $name
      * @param string $notes

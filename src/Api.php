@@ -41,7 +41,6 @@ use Billogram\Api\Exceptions\UnknownFieldError;
 use Billogram\Api\Models\BillogramClass;
 use Billogram\Api\Models\SimpleClass;
 use Billogram\Api\Objects\SingletonObject;
-use GuzzleHttp\Psr7\Response;
 use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
@@ -86,8 +85,6 @@ class Api
      *
      * Pass the API authentication in the auth_user and auth_key parameters.
      * API accounts can only be created from the Billogram web interface.
-     *
-     * Api constructor.
      *
      * @param $authUser
      * @param $authKey
