@@ -5,8 +5,6 @@ namespace Billogram\Api\Models\Customers;
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
-
-
 class CustomerBillingAddress
 {
     /**
@@ -41,8 +39,9 @@ class CustomerBillingAddress
 
     /**
      * CustomerBillingAddress constructor.
+     *
      * @param string $careOf
-     * @param bool $useCareOfAsAttention
+     * @param bool   $useCareOfAsAttention
      * @param string $streetAddress
      * @param string $zipCode
      * @param string $city

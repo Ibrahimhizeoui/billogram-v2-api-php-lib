@@ -49,11 +49,12 @@ class SimpleClass
      * Constructor sets the base url and significant id field for the resource.
      *
      * SimpleClass constructor.
-     * @param Api $api
+     *
+     * @param Api    $api
      * @param string $urlName
      * @param $objectIdField
      */
-    public function __construct(Api $api,string $urlName, $objectIdField)
+    public function __construct(Api $api, string $urlName, $objectIdField)
     {
         $this->api = $api;
         $this->urlName = $urlName;

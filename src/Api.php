@@ -88,12 +88,13 @@ class Api
      * API accounts can only be created from the Billogram web interface.
      *
      * Api constructor.
+     *
      * @param $authUser
      * @param $authKey
-     * @param string $userAgent
-     * @param string $apiBase
-     * @param array $extraHeaders
-     * @param HttpClient|null $httpClient
+     * @param string              $userAgent
+     * @param string              $apiBase
+     * @param array               $extraHeaders
+     * @param HttpClient|null     $httpClient
      * @param MessageFactory|null $messageFactory
      */
     public function __construct(
@@ -129,6 +130,7 @@ class Api
      *
      * @param $response
      * @param null $expectContentType
+     *
      * @throws InvalidAuthenticationError
      * @throws InvalidFieldCombinationError
      * @throws InvalidFieldValueError
@@ -255,9 +257,10 @@ class Api
      *
      * @param string $url
      * @param string $method
-     * @param array $body
-     * @param array $sendHeaders
-     * @param int $timeout
+     * @param array  $body
+     * @param array  $sendHeaders
+     * @param int    $timeout
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     private function httpRequest(
@@ -299,8 +302,8 @@ class Api
      * Used for receiving an existing object or a list of resources.
      *
      * @param string $objectUrl
-     * @param array $data
-     * @param null $expectContentType
+     * @param array  $data
+     * @param null   $expectContentType
      */
     public function get(string $objectUrl, array $data = null, $expectContentType = null)
     {
@@ -317,7 +320,7 @@ class Api
      * Used to create a new object.
      *
      * @param string $objectUrl
-     * @param array $data
+     * @param array  $data
      */
     public function post(string $objectUrl, array $data)
     {
@@ -341,7 +344,7 @@ class Api
      * Used for updating a single existing object.
      *
      * @param string $objectUrl
-     * @param array $data
+     * @param array  $data
      */
     public function put(string $objectUrl, array $data)
     {
@@ -384,7 +387,9 @@ class Api
      * Provide access to the different resource models.
      *
      * @param string $key
+     *
      * @return BillogramClass|SimpleClass|SingletonObject
+     *
      * @throws UnknownFieldError
      */
     public function __get(string $key)

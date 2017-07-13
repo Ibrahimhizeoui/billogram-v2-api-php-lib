@@ -7,7 +7,6 @@ namespace Billogram\Api\Models\Customer;
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
-
 class CustomerContact
 {
     /**
@@ -27,6 +26,7 @@ class CustomerContact
 
     /**
      * CustomerContact constructor.
+     *
      * @param string $name
      * @param string $notes
      * @param string $orgNo
@@ -85,5 +85,4 @@ class CustomerContact
     {
         $this->orgNo = $orgNo;
     }
-
 }

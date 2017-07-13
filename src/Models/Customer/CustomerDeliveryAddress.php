@@ -5,7 +5,6 @@ namespace Billogram\Api\Models\Customers;
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
-
 class CustomerDeliveryAddress
 {
     /**
@@ -40,6 +39,7 @@ class CustomerDeliveryAddress
 
     /**
      * CustomerDeliveryAddress constructor.
+     *
      * @param string $name
      * @param string $streetAddress
      * @param string $careOf

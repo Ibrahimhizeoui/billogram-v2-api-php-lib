@@ -53,15 +53,16 @@ class Customer
 
     /**
      * Customer constructor.
-     * @param int $customerNo
-     * @param string $name
-     * @param string $notes
-     * @param string $orgNo
-     * @param string $vatNo
-     * @param CustomerContact $contact
-     * @param CustomerBillingAddress $address
+     *
+     * @param int                     $customerNo
+     * @param string                  $name
+     * @param string                  $notes
+     * @param string                  $orgNo
+     * @param string                  $vatNo
+     * @param CustomerContact         $contact
+     * @param CustomerBillingAddress  $address
      * @param CustomerDeliveryAddress $deliveryAddress
-     * @param string $companyType
+     * @param string                  $companyType
      */
     public function __construct($customerNo, $name, $notes, $orgNo, $vatNo, CustomerContact $contact, CustomerBillingAddress $address, CustomerDeliveryAddress $deliveryAddress, $companyType)
     {
@@ -220,7 +221,8 @@ class Customer
         $this->companyType = $companyType;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         return (array) $this;
     }
 }
