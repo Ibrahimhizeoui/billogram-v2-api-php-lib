@@ -41,10 +41,12 @@ use Billogram\Api\Exceptions\UnknownFieldError;
 use Billogram\Api\Models\BillogramClass;
 use Billogram\Api\Models\SimpleClass;
 use Billogram\Api\Objects\SingletonObject;
+use GuzzleHttp\Psr7\Response;
 use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Message\MessageFactory;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Pseudo-connection to the Billogram v2 API.
@@ -71,7 +73,6 @@ class Api
     private $extraHeaders;
     private $httpClient;
     private $messageFactory;
-
     private $itemsConnector;
     private $customersConnector;
     private $billogramConnector;
@@ -85,6 +86,15 @@ class Api
      *
      * Pass the API authentication in the auth_user and auth_key parameters.
      * API accounts can only be created from the Billogram web interface.
+     *
+     * Api constructor.
+     * @param $authUser
+     * @param $authKey
+     * @param string $userAgent
+     * @param string $apiBase
+     * @param array $extraHeaders
+     * @param HttpClient|null $httpClient
+     * @param MessageFactory|null $messageFactory
      */
     public function __construct(
         $authUser,
@@ -116,8 +126,23 @@ class Api
      * Checks the response ($response as a response-object from httpRequest)
      * from the API and throws the appropriate exceptions or returns the
      * de-encoded data.
+     *
+     * @param $response
+     * @param null $expectContentType
+     * @throws InvalidAuthenticationError
+     * @throws InvalidFieldCombinationError
+     * @throws InvalidFieldValueError
+     * @throws InvalidObjectStateError
+     * @throws NotAuthorizedError
+     * @throws ObjectNotFoundError
+     * @throws PermissionDeniedError
+     * @throws ReadOnlyFieldError
+     * @throws RequestDataError
+     * @throws RequestFormError
+     * @throws ServiceMalfunctioningError
+     * @throws UnknownFieldError
      */
-    private function checkApiResponse($response, $expectContentType = null)
+    private function checkApiResponse(ResponseInterface $response, $expectContentType = null)
     {
         if ($response->getStatusCode() !== 200 || $expectContentType == null) {
             $expectContentType = 'application/json';
@@ -227,12 +252,19 @@ class Api
     /**
      * Opens a socket and makes a request to the url of choice. Returns an
      * object with statusCode, status, content and the received headers.
+     *
+     * @param string $url
+     * @param string $method
+     * @param array $body
+     * @param array $sendHeaders
+     * @param int $timeout
+     * @return \Psr\Http\Message\ResponseInterface
      */
     private function httpRequest(
-        $url,
-        $method,
-        $body = [],
-        $sendHeaders = [],
+        string $url,
+        string $method,
+        array $body = [],
+        array $sendHeaders = [],
         $timeout = 10
     ) {
         if (is_array($body)) {
@@ -252,6 +284,8 @@ class Api
 
     /**
      * Returns an Authorization header to be used for the httpRequest method.
+     *
+     * @return array
      */
     private function authHeader()
     {
@@ -263,8 +297,12 @@ class Api
     /**
      * Makes a GET request to an API object.
      * Used for receiving an existing object or a list of resources.
+     *
+     * @param string $objectUrl
+     * @param array $data
+     * @param null $expectContentType
      */
-    public function get($objectUrl, $data = null, $expectContentType = null)
+    public function get(string $objectUrl, array $data = null, $expectContentType = null)
     {
         $url = $this->apiBase.'/'.$objectUrl;
 
@@ -277,8 +315,11 @@ class Api
     /**
      * Makes a POST request to an API object.
      * Used to create a new object.
+     *
+     * @param string $objectUrl
+     * @param array $data
      */
-    public function post($objectUrl, $data)
+    public function post(string $objectUrl, array $data)
     {
         $url = $this->apiBase.'/'.$objectUrl;
 
@@ -298,8 +339,11 @@ class Api
     /**
      * Makes a PUT request to an API object.
      * Used for updating a single existing object.
+     *
+     * @param string $objectUrl
+     * @param array $data
      */
-    public function put($objectUrl, $data)
+    public function put(string $objectUrl, array $data)
     {
         $url = $this->apiBase.'/'.$objectUrl;
 
@@ -319,8 +363,10 @@ class Api
     /**
      * Makes a DELETE request to an API object.
      * Used to delete a single existing object.
+     *
+     * @param string $objectUrl
      */
-    public function delete($objectUrl)
+    public function delete(string $objectUrl)
     {
         $url = $this->apiBase.'/'.$objectUrl;
 
@@ -336,8 +382,12 @@ class Api
 
     /**
      * Provide access to the different resource models.
+     *
+     * @param string $key
+     * @return BillogramClass|SimpleClass|SingletonObject
+     * @throws UnknownFieldError
      */
-    public function __get($key)
+    public function __get(string $key)
     {
         switch ($key) {
             case 'items':

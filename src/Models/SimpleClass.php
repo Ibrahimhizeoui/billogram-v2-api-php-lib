@@ -27,6 +27,7 @@
 namespace Billogram\Api\Models;
 
 use Billogram\Api\Query;
+use Billogram\Api;
 
 /**
  * Represents a collection of remote objects on the Billogram service.
@@ -46,8 +47,13 @@ class SimpleClass
 
     /**
      * Constructor sets the base url and significant id field for the resource.
+     *
+     * SimpleClass constructor.
+     * @param Api $api
+     * @param string $urlName
+     * @param $objectIdField
      */
-    public function __construct($api, $urlName, $objectIdField)
+    public function __construct(Api $api,string $urlName, $objectIdField)
     {
         $this->api = $api;
         $this->urlName = $urlName;
@@ -82,11 +88,11 @@ class SimpleClass
     /**
      * Makes a POST request to the API and creates a new object.
      *
-     * @param $data
+     * @param array $data
      *
      * @return \Billogram\Api\Objects\SimpleObject
      */
-    public function create($data)
+    public function create(array $data)
     {
         $response = $this->api->post($this->url(), $data);
         $className = $this->objectClass;

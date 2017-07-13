@@ -40,9 +40,11 @@ class BillogramClass extends SimpleClass
     public $objectClass = 'Billogram\Api\Objects\BillogramObject';
 
     /**
-     * Constructor sets the base url and significant id field for the resource.
-     */
-    public function __construct($api)
+     *  Constructor sets the base url and significant id field for the resource.
+     *
+     * BillogramClass constructor.
+     * @param $api
+     */public function __construct($api)
     {
         $this->api = $api;
         $this->urlName = 'billogram';
@@ -66,9 +68,7 @@ class BillogramClass extends SimpleClass
      *
      * @param $data
      * @param $method
-     *
      * @throws \Billogram\Api\Exceptions\InvalidFieldValueError
-     *
      * @return \Billogram\Api\Objects\BillogramObject
      */
     public function createAndSend($data, $method)
@@ -92,7 +92,6 @@ class BillogramClass extends SimpleClass
      *
      * @param $data
      * @param $method
-     *
      * @return \Billogram\Api\Objects\BillogramObject
      */
     public function createAndSell($data, $method)
