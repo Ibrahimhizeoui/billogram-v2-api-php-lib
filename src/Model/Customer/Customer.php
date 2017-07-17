@@ -1,15 +1,13 @@
 <?php
 
-namespace Billogram\Api\Models\Customers;
-
-
-use Billogram\Api\Models\Customer\CustomerContact;
+namespace Billogram\Model\Customer;
+use Billogram\Model\CreatableFromArray;
 
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
 
-class Customer
+class Customer implements CreatableFromArray
 {
     /**
      * @var int
@@ -52,12 +50,24 @@ class Customer
     private $deliveryAddress;
 
     /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
      * @var string
      */
     private $companyType;
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -231,8 +241,73 @@ class Customer
         return $new;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public static function createFromArray(array $data): Customer
+    {
+
+        $customer = new self();
+        $customer->customerNo = $data['customerNo'] ?? null;
+        $customer->name = $data['name'] ?? null;
+        $customer->notes = $data['notes'] ?? null;
+        $customer->orgNo = $data['orgNo'] ?? null;
+        $customer->vatNo = $data['vatNo'] ?? null;
+        $customer->contact->setName($data['contact']['name'] ?? null);
+        $customer->contact->setEmail($data['contact']['email'] ?? null);
+        $customer->contact->setPhone($data['contact']['phone'] ?? null);
+        $customer->withAddress(new CustomerBillingAddress($data['address']['careOf'], $data['address']['useCareOfAsAttention'], $data['address']['streetAddress'], $data['address']['zipCode'], $data['address']['city'], $data['address']['country']));
+        $customer->withDeliveryAddress(new CustomerDeliveryAddress($data['address']['name'], $data['address']['streetAddress'], $data['address']['careOf'], $data['address']['zipCode'], $data['address']['city'], $data['address']['country']));
+        $customer->createdAt = $data['createdAt'];
+        $customer->updatedAt = $data['updatedAt'];
+         return $customer;
+    }
+
     public function toArray()
     {
-        return (array) $this;
+        $data['customerNo'] = $this->orgNo ?? null;
+        $data['name'] = $this->name ?? null;
+        $data['notes'] = $this->notes ?? null;
+        $data['orgNo'] = $this->orgNo ?? null;
+        $data['vatNo'] = $this->vatNo ?? null;
+        $data['contact'][]=['name' => $this->contact->getName() , 'email' => $this->contact->getEmail(), 'phone' => $this->contact->getPhone()] ?? null;
+        $data['address']['careOf'] = $this->address->getCareOf();
+        $data['address']['useCareOfAsAttention'] = $this->address->isUseCareOfAsAttention() ?? null;
+        $data['address']['streetAddress'] = $this->address->getStreetAddress() ?? null;
+        $data['address']['zipCode'] = $this->address->getZipCode() ?? null;
+        $data['address']['city'] = $this->address->getCity() ?? null;
+        $data['address']['country'] = $this->address->getCountry() ?? null;
+        $data['deliveryAddress']['careOf'] = $this->deliveryAddress->getCareOf() ?? null;
+        $data['deliveryAddress']['streetAddress'] = $this->deliveryAddress->getStreetAddress() ?? null;
+        $data['deliveryAddress']['careOf'] = $this->deliveryAddress->getCareOf() ?? null;
+        $data['deliveryAddress']['zipCode'] = $this->deliveryAddress->getZipCode() ?? null;
+        $data['deliveryAddress']['city'] = $this->deliveryAddress->getCity() ?? null;
+        $data['deliveryAddress']['country'] = $this->deliveryAddress->getCountry() ?? null;
+
+        $data['createdAt'] = $this->getCreatedAt() ?? null;
+        $data['updatedAt'] = $this->getUpdatedAt() ?? null;
+
+        return $data;
     }
 }

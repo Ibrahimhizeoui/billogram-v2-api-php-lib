@@ -257,7 +257,6 @@ class Api
      * @param string $method
      * @param array  $body
      * @param array  $sendHeaders
-     * @param int    $timeout
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -265,8 +264,7 @@ class Api
         string $url,
         string $method,
         array $body = [],
-        array $sendHeaders = [],
-        $timeout = 10
+        array $sendHeaders = []
     ) {
         if (is_array($body)) {
             if (in_array($method, ['POST', 'PUT'])) {
@@ -331,7 +329,7 @@ class Api
             $this->httpRequest(
                 $url,
                 'POST',
-                json_encode($data),
+                $data,
                 array_merge(
                     $this->authHeader(),
                     ['Content-type' => 'application/json']

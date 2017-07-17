@@ -1,26 +1,26 @@
 <?php
 
-namespace Billogram\Api\Models\Customers;
+namespace Billogram\Model\Customer;
 
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
-class CustomerDeliveryAddress
+class CustomerBillingAddress
 {
     /**
      * @var string
      */
-    private $name;
+    private $careOf;
+
+    /**
+     * @var bool
+     */
+    private $useCareOfAsAttention;
 
     /**
      * @var string
      */
     private $streetAddress;
-
-    /**
-     * @var string
-     */
-    private $careOf;
 
     /**
      * @var string
@@ -39,53 +39,21 @@ class CustomerDeliveryAddress
 
     /**
      *
-     * @param string $name
-     * @param string $streetAddress
      * @param string $careOf
+     * @param bool   $useCareOfAsAttention
+     * @param string $streetAddress
      * @param string $zipCode
      * @param string $city
      * @param string $country
      */
-    public function __construct($name, $streetAddress, $careOf, $zipCode, $city, $country)
+    public function __construct(string $careOf, bool $useCareOfAsAttention, string $streetAddress, string $zipCode, string $city, string $country)
     {
-        $this->name = $name;
-        $this->streetAddress = $streetAddress;
         $this->careOf = $careOf;
+        $this->useCareOfAsAttention = $useCareOfAsAttention;
+        $this->streetAddress = $streetAddress;
         $this->zipCode = $zipCode;
         $this->city = $city;
         $this->country = $country;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStreetAddress()
-    {
-        return $this->streetAddress;
-    }
-
-    /**
-     * @param string $streetAddress
-     */
-    public function setStreetAddress(string $streetAddress)
-    {
-        $this->streetAddress = $streetAddress;
     }
 
     /**
@@ -102,6 +70,38 @@ class CustomerDeliveryAddress
     public function setCareOf(string $careOf)
     {
         $this->careOf = $careOf;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUseCareOfAsAttention()
+    {
+        return $this->useCareOfAsAttention;
+    }
+
+    /**
+     * @param bool $useCareOfAsAttention
+     */
+    public function setUseCareOfAsAttention(bool $useCareOfAsAttention)
+    {
+        $this->useCareOfAsAttention = $useCareOfAsAttention;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStreetAddress()
+    {
+        return $this->streetAddress;
+    }
+
+    /**
+     * @param string $streetAddress
+     */
+    public function setStreetAddress(string $streetAddress)
+    {
+        $this->streetAddress = $streetAddress;
     }
 
     /**
