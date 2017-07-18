@@ -1,26 +1,23 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Billogram\Api;
 
-use Billogram\Api;
+
 use Billogram\Exception\Domain\ValidationException;
 use Billogram\Exception\InvalidArgumentException;
-use Billogram\Model\Customer\Customer as Model;
-use Billogram\Model\Customer\Customers;
-use Billogram\Api\HttpApi;
+use \Billogram\Model\Customer\Item as Model;
 
-class Customer extends HttpApi
+class Item extends HttpApi
 {
     /**
      * @param array $param
      * @return string|array
-     * @link
+     * @link https://billogram.com/api/documentation#items_list
      */
     public function search(array $param = ['page'=>1, 'page_size'=> 100 ])
     {
-        $response= $this->httpget('/customer', $param);
+        $response= $this->httpget('/item', $param);
 
         if (!$this->hydrator) {
             return $response;
@@ -30,25 +27,23 @@ class Customer extends HttpApi
         if ($response->getStatusCode() !== 200) {
             $this->handleErrors($response);
         }
-        return $this->hydrator->hydrate($response, Customers::class);
+        return $this->hydrator->hydrate($response, Model::class);
 
     }
 
     /**
      *
-     * @param int   $customerNo
+     * @param int   $itemNo
      * @param array $param
      *
      *
-     * @link https://billogram.com/api/documentation#customers_fetch
+     * @link https://billogram.com/api/documentation#items_fetch
      * @return \Billogram\Model\Customer\Customer
      */
-    public function fetch(int $customerNo, array $param = [])
+    public function fetch(int $itemNo, array $param = [])
     {
-        if (empty($customerNo)) {
-            throw new InvalidArgumentException('Id cannot be empty');
-        }
-        $response = $this->httpGet('/customer/'.$customerNo, $param);
+
+        $response = $this->httpGet('/item/'.$itemNo, $param);
 
         if (!$this->hydrator) {
             return $response;
@@ -62,17 +57,13 @@ class Customer extends HttpApi
     }
 
     /**
-     * @param Model $costumer
+     * @param Model $item
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws ValidationException
      */
-    public function create(Model $costumer)
+    public function create(Model $item)
     {
-        if (empty($costumer)) {
-            throw new InvalidArgumentException('Message cannot be empty');
-        }
-
-        $response = $this->httpPost('/customer', $costumer->toArray());
+        $response = $this->httpPost('/customer', $item->toArray());
         $body = $response->getBody()->__toString();
 
         if (!$this->hydrator) {
@@ -92,18 +83,11 @@ class Customer extends HttpApi
         return $this->hydrator->hydrate($response, Model::class);
     }
 
-    /**
-     * @param int                       $customerNo
-     * @param  $costumer
-     *
-     * @link https://billogram.com/api/documentation#customers_edit
-     */
-    public function update(int $customerNo, Model $costumer)
+    /****/
+    public function update(int $itemNo, Model $item)
     {
-        if ($customerNo===0) {
-            throw new \InvalidArgumentException('Id cannot be empty');
-        }
-        $response = $this->httpPut('/customer/'.$customerNo, $costumer->toArray());
+
+        $response = $this->httpPut('/customer/'.$itemNo, $item->toArray());
 
         if (!$this->hydrator) {
             return $response;
