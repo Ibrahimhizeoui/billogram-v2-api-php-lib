@@ -269,44 +269,34 @@ class Customer implements CreatableFromArray
     {
 
         $customer = new self();
-        $customer->customerNo = $data['customerNo'] ?? null;
-        $customer->name = $data['name'] ?? null;
-        $customer->notes = $data['notes'] ?? null;
-        $customer->orgNo = $data['orgNo'] ?? null;
-        $customer->vatNo = $data['vatNo'] ?? null;
-        $customer->contact->setName($data['contact']['name'] ?? null);
-        $customer->contact->setEmail($data['contact']['email'] ?? null);
-        $customer->contact->setPhone($data['contact']['phone'] ?? null);
-        $customer->withAddress(new CustomerBillingAddress($data['address']['careOf'], $data['address']['useCareOfAsAttention'], $data['address']['streetAddress'], $data['address']['zipCode'], $data['address']['city'], $data['address']['country']));
-        $customer->withDeliveryAddress(new CustomerDeliveryAddress($data['address']['name'], $data['address']['streetAddress'], $data['address']['careOf'], $data['address']['zipCode'], $data['address']['city'], $data['address']['country']));
-        $customer->createdAt = $data['createdAt'];
-        $customer->updatedAt = $data['updatedAt'];
+        $contact = new  CustomerContact($data['data']['contact']['name'], $data['data']['contact']['email'], $data['data']['contact']['phone']);
+        $address= new CustomerBillingAddress($data['data']['address']['careof'], $data['data']['address']['use_careof_as_attention'], $data['data']['address']['street_address'], $data['data']['address']['zipcode'], $data['data']['address']['city'], $data['data']['address']['country']);
+        $deliveryAddress = new CustomerDeliveryAddress($data['data']['delivery_address']['name'], $data['data']['delivery_address']['street_address'], $data['data']['delivery_address']['careof'], $data['data']['delivery_address']['zipcode'], $data['data']['delivery_address']['city'], $data['data']['delivery_address']['country']);
+        $customer->customerNo = $data['data']['customer_no'] ?? null;
+        $customer->name = $data['data']['name'] ?? null;
+        $customer->notes = $data['data']['notes'] ?? null;
+        $customer->orgNo = $data['data']['org_no'] ?? null;
+        $customer->vatNo = $data['data']['vat_no'] ?? null;
+        $customer->contact= $contact;
+        $customer->address = $address;
+        $customer->deliveryAddress = $deliveryAddress;
+        $customer->createdAt = $data['data']['created_at'];
+        $customer->updatedAt = $data['data']['updated_at'];
+        $customer->companyType = $data['data']['company_type'];
          return $customer;
     }
 
     public function toArray()
     {
-        $data['customerNo'] = $this->orgNo ?? null;
+        //$data['customer_no'] = $this->orgNo ?? null;
         $data['name'] = $this->name ?? null;
         $data['notes'] = $this->notes ?? null;
-        $data['orgNo'] = $this->orgNo ?? null;
-        $data['vatNo'] = $this->vatNo ?? null;
-        $data['contact'][]=['name' => $this->contact->getName() , 'email' => $this->contact->getEmail(), 'phone' => $this->contact->getPhone()] ?? null;
-        $data['address']['careOf'] = $this->address->getCareOf();
-        $data['address']['useCareOfAsAttention'] = $this->address->isUseCareOfAsAttention() ?? null;
-        $data['address']['streetAddress'] = $this->address->getStreetAddress() ?? null;
-        $data['address']['zipCode'] = $this->address->getZipCode() ?? null;
-        $data['address']['city'] = $this->address->getCity() ?? null;
-        $data['address']['country'] = $this->address->getCountry() ?? null;
-        $data['deliveryAddress']['careOf'] = $this->deliveryAddress->getCareOf() ?? null;
-        $data['deliveryAddress']['streetAddress'] = $this->deliveryAddress->getStreetAddress() ?? null;
-        $data['deliveryAddress']['careOf'] = $this->deliveryAddress->getCareOf() ?? null;
-        $data['deliveryAddress']['zipCode'] = $this->deliveryAddress->getZipCode() ?? null;
-        $data['deliveryAddress']['city'] = $this->deliveryAddress->getCity() ?? null;
-        $data['deliveryAddress']['country'] = $this->deliveryAddress->getCountry() ?? null;
+        $data['org_no'] = $this->orgNo ?? null;
+        $data['vat_no'] = $this->vatNo ?? null;
+        $data['contact'] = ['name' => $this->contact->getName() , 'email' => $this->contact->getEmail(), 'phone' => $this->contact->getPhone()] ?? null;
+        $data['address'] = ['careof' => $this->address->getCareOf(), 'use_careof_as_attention' => $this->address->isUseCareOfAsAttention(), 'street_address' => $this->address->getStreetAddress(), 'zipcode' => $this->address->getZipCode(), 'city' => $this->address->getCity(), 'country' => $this->address->getCountry()];
+        $data['delivery_address'] = ['name' => $this->deliveryAddress->getCareOf(), 'street_address' => $this->deliveryAddress->getStreetAddress(), 'careof' => $this->deliveryAddress->getCareOf(), 'zipcode' => $this->deliveryAddress->getZipCode(), 'city' => $this->deliveryAddress->getCity(), 'country' => $this->deliveryAddress->getCountry()] ?? null;
 
-        $data['createdAt'] = $this->getCreatedAt() ?? null;
-        $data['updatedAt'] = $this->getUpdatedAt() ?? null;
 
         return $data;
     }

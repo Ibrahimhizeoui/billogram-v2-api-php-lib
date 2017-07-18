@@ -18,7 +18,7 @@ class Customer extends HttpApi
      * @return string|array
      * @link
      */
-    public function search(array $param = [])
+    public function search(array $param = ['page'=>1, 'page_size'=> 100 ])
     {
         $response= $this->httpget('/customer', $param);
 
@@ -43,9 +43,9 @@ class Customer extends HttpApi
      * @link https://billogram.com/api/documentation#customers_fetch
      * @return \Billogram\Model\Customer\Customer
      */
-    public function fetch(int $customerNo, array $param)
+    public function fetch(int $customerNo, array $param = [])
     {
-        if (empty($id)) {
+        if (empty($customerNo)) {
             throw new InvalidArgumentException('Id cannot be empty');
         }
         $response = $this->httpGet('/customer/'.$customerNo, $param);
@@ -72,6 +72,7 @@ class Customer extends HttpApi
         }
 
         $response = $this->httpPost('/customer', $costumer->toArray());
+        $body = $response->getBody()->__toString();
 
         if (!$this->hydrator) {
             return $response;
