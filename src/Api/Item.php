@@ -6,7 +6,7 @@ namespace Billogram\Api;
 
 use Billogram\Exception\Domain\ValidationException;
 use Billogram\Exception\InvalidArgumentException;
-use \Billogram\Model\Customer\Item as Model;
+use \Billogram\Model\Item\Item as Model;
 
 class Item extends HttpApi
 {
@@ -32,13 +32,9 @@ class Item extends HttpApi
     }
 
     /**
-     *
-     * @param int   $itemNo
+     * @param int $itemNo
      * @param array $param
-     *
-     *
-     * @link https://billogram.com/api/documentation#items_fetch
-     * @return \Billogram\Model\Customer\Customer
+     * @return mixed|\Psr\Http\Message\ResponseInterface
      */
     public function fetch(int $itemNo, array $param = [])
     {
@@ -63,7 +59,7 @@ class Item extends HttpApi
      */
     public function create(Model $item)
     {
-        $response = $this->httpPost('/customer', $item->toArray());
+        $response = $this->httpPost('/item', $item->toArray());
         $body = $response->getBody()->__toString();
 
         if (!$this->hydrator) {
@@ -87,7 +83,7 @@ class Item extends HttpApi
     public function update(int $itemNo, Model $item)
     {
 
-        $response = $this->httpPut('/customer/'.$itemNo, $item->toArray());
+        $response = $this->httpPut('/item/'.$itemNo, $item->toArray());
 
         if (!$this->hydrator) {
             return $response;

@@ -7,7 +7,7 @@ namespace Billogram\Model\Item;
 class Bookkeeping
 {
     /**
-     * @var int
+     * @var string
      */
     private $incomeAccount;
 
@@ -21,18 +21,18 @@ class Bookkeeping
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIncomeAccount(): int
+    public function getIncomeAccount(): string
     {
         return $this->incomeAccount;
     }
 
     /**
-     * @param int $incomeAccount
+     * @param string $incomeAccount
      * @return Bookkeeping
      */
-    public function withIncomeAccount(int $incomeAccount)
+    public function withIncomeAccount(string $incomeAccount)
     {
         $new = clone $this;
         $new->incomeAccount = $incomeAccount;
@@ -59,7 +59,7 @@ class Bookkeeping
     }
 
     public function toArray(){
-        $data['bookkeeping'][]=['income_account' => $this->incomeAccount , 'vat_account' => $this->vatAccount];
+        $data=['income_account' => $this->incomeAccount , 'vat_account' => $this->vatAccount];
         return $data;
     }
 
