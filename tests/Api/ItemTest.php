@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class ItemTest extends TestCase
 {
-    public function testPost(){
+    /*public function testPost(){
         //$bookkeeping = new Bookkeeping();
         //$bookkeeping = $bookkeeping->withVatAccount();
         //$bookkeeping = $bookkeeping->withIncomeAccount();
@@ -24,9 +24,9 @@ class ItemTest extends TestCase
         //$item = $item->withBookkeeping($bookkeeping);
         $apiClient = ApiClient::create('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient->items()->create($item);
-    }
+    }*/
 
-    public function testUpdate(){
+    /*public function testUpdate(){
         //$bookkeeping = new Bookkeeping();
         //$bookkeeping = $bookkeeping->withVatAccount();
         //$bookkeeping = $bookkeeping->withIncomeAccount();
@@ -39,14 +39,14 @@ class ItemTest extends TestCase
         //$item = $item->withBookkeeping($bookkeeping);
         $apiClient = ApiClient::create('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient->items()->update(1, $item);
-    }
+    }*/
 
     public function testFetch(){
         $apiClient = ApiClient::create('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $custumer=$apiClient->items()->fetch(1,['']);}
-
+/*
     public function testSearch(){
         $apiClient = ApiClient::create('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $custumers = $apiClient->items()->search();
-    }
+    }*/
 }
