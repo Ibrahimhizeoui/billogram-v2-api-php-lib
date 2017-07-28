@@ -99,7 +99,11 @@ final class ApiClient
      */
     public function invoices(): Invoice
     {
-        return new Api\Invoice ($this->httpClient, $this->hydrator, $this->requestBuilder);
+        return new Api\Invoice($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> 5c30a1b... The StyleCI update

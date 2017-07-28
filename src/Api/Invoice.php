@@ -1,108 +1,99 @@
 <?php
 declare(strict_types=1);
-
-
 namespace Billogram\Api;
 use Billogram\Exception\Domain\ValidationException;
 use Billogram\Model\Invoice\Invoice as Model;
-
+use Billogram\Model\Invoice\Invoices;
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 class Invoice extends HttpApi
 {
     /**
      * @param array $param
+     *
      * @return string|array
-     * @link https://billogram.com/api/documentation#items_list
+     *
+     * @see https://billogram.com/api/documentation#billogram_call_create
      */
-    public function search(array $param = ['page'=>1, 'page_size'=> 100 ])
+    public function search(array $param = [])
     {
-        $response= $this->httpget('/billogram', $param);
-
+        $param = array_merge(['page' => 1, 'page_size' => 100], $param);
+        $response = $this->httpget('/billogram', $param);
+        $body = $response->getBody()->__toString();
         if (!$this->hydrator) {
             return $response;
         }
-
         // Use any valid status code here
         if ($response->getStatusCode() !== 200) {
-            $this->handleErrors($response);
+            $this->handleErrors($response, $body);
         }
-        return $this->hydrator->hydrate($response, Model::class);
-
+        return $this->hydrator->hydrate($response, Invoices::class);
     }
-
     /**
-     * @param int $invoiceId
-     * @param array $param
+     * @param string $invoiceId
+     * @param array  $param
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
+     * @see https://billogram.com/api/documentation#billogram_call_create
      */
-    public function fetch(int $invoiceId, array $param = [])
+    public function fetch(string $invoiceId, array $param = [])
     {
-
         $response = $this->httpGet('/billogram/'.$invoiceId, $param);
-
+        $body = $response->getBody()->__toString();
         if (!$this->hydrator) {
             return $response;
         }
         // Use any valid status code here
         if ($response->getStatusCode() !== 200) {
-            $this->handleErrors($response);
+            $this->handleErrors($response, $body);
         }
         return $this->hydrator->hydrate($response, Model::class);
-
     }
-
     /**
      * @param Model $invoice
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
+     * @see https://billogram.com/api/documentation#billogram_call_create
+     *
      * @throws ValidationException
      */
     public function create(Model $invoice)
     {
         $response = $this->httpPost('/billogram', $invoice->toArray());
         $body = $response->getBody()->__toString();
-
         if (!$this->hydrator) {
             return $response;
         }
         // Use any valid status code here
         if ($response->getStatusCode() !== 201) {
-            switch ($response->getStatusCode()) {
-                case 400:
-                    throw new ValidationException();
-                    break;
-                default:
-                    $this->handleErrors($response);
-                    break;
-            }
+            $this->handleErrors($response, $body);
         }
         return $this->hydrator->hydrate($response, Model::class);
     }
-
     /**
-     * @param int $invoiceId
-     * @param Model $invoice
+     * @param string $invoiceId
+     * @param Model  $invoice
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
+     * @see https://billogram.com/api/documentation#billogram_call_create
+     *
      * @throws ValidationException
      */
-    public function update(int $invoiceId, Model $invoice)
+    public function update(string $invoiceId, Model $invoice)
     {
-
         $response = $this->httpPut('/billogram/'.$invoiceId, $invoice->toArray());
-
+        $body = $response->getBody()->__toString();
         if (!$this->hydrator) {
             return $response;
         }
         // Use any valid status code here
         if ($response->getStatusCode() !== 200) {
-            switch ($response->getStatusCode()) {
-                case 400:
-                    throw new ValidationException();
-                    break;
-                default:
-                    $this->handleErrors($response);
-                    break;
-            }
+            $this->handleErrors($response, $body);
         }
         return $this->hydrator->hydrate($response, Model::class);
     }
-
 }

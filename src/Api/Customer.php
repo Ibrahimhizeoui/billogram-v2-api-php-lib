@@ -1,126 +1,96 @@
 <?php
-
 declare(strict_types=1);
-
 namespace Billogram\Api;
-
-use Billogram\Api;
+use Billogram\Exception\Domain\NotFoundException;
 use Billogram\Exception\Domain\ValidationException;
-use Billogram\Exception\InvalidArgumentException;
 use Billogram\Model\Customer\Customer as Model;
 use Billogram\Model\Customer\Customers;
-use Billogram\Api\HttpApi;
-
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 class Customer extends HttpApi
 {
     /**
      * @param array $param
+     *
      * @return string|array
-     * @link
+     *
+     * @see https://billogram.com/api/documentation#customers_list
      */
-    public function search(array $param = ['page'=>1, 'page_size'=> 100 ])
+    public function search(array $param = [])
     {
-        $response= $this->httpget('/customer', $param);
-
+        $param = array_merge(['page' => 1, 'page_size' => 100], $param);
+        $response = $this->httpGet('/customer', $param);
+        $body = $response->getBody()->__toString();
         if (!$this->hydrator) {
             return $response;
         }
-
-        // Use any valid status code here
         if ($response->getStatusCode() !== 200) {
-            $this->handleErrors($response);
+            $this->handleErrors($response, $body);
         }
         return $this->hydrator->hydrate($response, Customers::class);
-
     }
-
     /**
-     *
      * @param int   $customerNo
      * @param array $param
      *
+     * @return mixed|\Psr\Http\Message\ResponseInterface
      *
-     * @link https://billogram.com/api/documentation#customers_fetch
-     * @return \Billogram\Model\Customer\Customer
+     * @throws NotFoundException
      */
     public function fetch(int $customerNo, array $param = [])
     {
-        if (empty($customerNo)) {
-            throw new InvalidArgumentException('Id cannot be empty');
-        }
         $response = $this->httpGet('/customer/'.$customerNo, $param);
-
+        $body = $response->getBody()->__toString();
         if (!$this->hydrator) {
             return $response;
         }
         // Use any valid status code here
         if ($response->getStatusCode() !== 200) {
-            $this->handleErrors($response);
+            $this->handleErrors($response, $body);
         }
         return $this->hydrator->hydrate($response, Model::class);
-
     }
-
     /**
-     * @param Model $costumer
+     * @param Model $customer
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
      * @throws ValidationException
      */
-    public function create(Model $costumer)
+    public function create(Model $customer)
     {
-        if (empty($costumer)) {
-            throw new InvalidArgumentException('Message cannot be empty');
-        }
-
-        $response = $this->httpPost('/customer', $costumer->toArray());
+        $response = $this->httpPost('/customer', $customer->toArray());
         $body = $response->getBody()->__toString();
-
         if (!$this->hydrator) {
             return $response;
         }
         // Use any valid status code here
-        if ($response->getStatusCode() !== 201) {
-            switch ($response->getStatusCode()) {
-                case 400:
-                    throw new ValidationException();
-                    break;
-                default:
-                    $this->handleErrors($response);
-                    break;
-            }
+        if ($response->getStatusCode() !== 200) {
+            $this->handleErrors($response, $body);
         }
         return $this->hydrator->hydrate($response, Model::class);
     }
-
     /**
-     * @param int                       $customerNo
-     * @param  $costumer
+     * @param int   $customerNo
+     * @param Model $costumer
      *
-     * @link https://billogram.com/api/documentation#customers_edit
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
+     * @throws NotFoundException
+     * @throws ValidationException
      */
     public function update(int $customerNo, Model $costumer)
     {
-        if ($customerNo===0) {
-            throw new \InvalidArgumentException('Id cannot be empty');
-        }
         $response = $this->httpPut('/customer/'.$customerNo, $costumer->toArray());
-
+        $body = $response->getBody()->__toString();
         if (!$this->hydrator) {
             return $response;
         }
         // Use any valid status code here
         if ($response->getStatusCode() !== 200) {
-            switch ($response->getStatusCode()) {
-                case 400:
-                    throw new ValidationException();
-                    break;
-                default:
-                    $this->handleErrors($response);
-                    break;
-            }
+            $this->handleErrors($response, $body);
         }
         return $this->hydrator->hydrate($response, Model::class);
     }
-
-
 }

@@ -1,56 +1,47 @@
 <?php
 declare(strict_types=1);
-
 namespace Billogram\Model\Invoice;
-
-
-class AdditionalInformation
+use Billogram\Model\CreatableFromArray;
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
+class AdditionalInformation implements CreatableFromArray
 {
-
     /**
-     * @var string $orderNo
+     * @var string
      */
     private $orderNo;
-
     /**
-     * @var string $orderDate
+     * @var string
      */
     private $orderDate;
-
     /**
-     * @var string $ourReference
+     * @var string
      */
     private $ourReference;
-
     /**
-     * @var string $yourReference
+     * @var string
      */
     private $yourReference;
-
     /**
-     * @var string $shippingDate
+     * @var string
      */
     private $shippingDate;
-
     /**
-     * @var string $deliveryDate
+     * @var string
      */
     private $deliveryDate;
-
     /**
-     * @var string $referenceNumber
+     * @var string
      */
     private $referenceNumber;
-
     /**
-     * @var string $message
+     * @var string
      */
     private $message;
-
     public function __construct()
     {
     }
-
     /**
      * @return string
      */
@@ -58,9 +49,9 @@ class AdditionalInformation
     {
         return $this->orderNo;
     }
-
     /**
      * @param string $orderNo
+     *
      * @return AdditionalInformation
      */
     public function withOrderNo(string $orderNo)
@@ -69,7 +60,6 @@ class AdditionalInformation
         $new->orderNo = $orderNo;
         return $new;
     }
-
     /**
      * @return string
      */
@@ -77,9 +67,9 @@ class AdditionalInformation
     {
         return $this->orderDate;
     }
-
     /**
      * @param string $orderDate
+     *
      * @return AdditionalInformation
      */
     public function withOrderDate(string $orderDate)
@@ -88,7 +78,6 @@ class AdditionalInformation
         $new->orderDate = $orderDate;
         return $new;
     }
-
     /**
      * @return string
      */
@@ -96,9 +85,9 @@ class AdditionalInformation
     {
         return $this->ourReference;
     }
-
     /**
      * @param string $ourReference
+     *
      * @return AdditionalInformation
      */
     public function withOurReference(string $ourReference)
@@ -107,7 +96,6 @@ class AdditionalInformation
         $new->ourReference = $ourReference;
         return $new;
     }
-
     /**
      * @return string
      */
@@ -115,9 +103,9 @@ class AdditionalInformation
     {
         return $this->yourReference;
     }
-
     /**
      * @param string $yourReference
+     *
      * @return AdditionalInformation
      */
     public function withYourReference(string $yourReference)
@@ -126,7 +114,6 @@ class AdditionalInformation
         $new->yourReference = $yourReference;
         return $new;
     }
-
     /**
      * @return string
      */
@@ -134,9 +121,9 @@ class AdditionalInformation
     {
         return $this->shippingDate;
     }
-
     /**
      * @param string $shippingDate
+     *
      * @return AdditionalInformation
      */
     public function withShippingDate(string $shippingDate)
@@ -145,7 +132,6 @@ class AdditionalInformation
         $new->shippingDate = $shippingDate;
         return $new;
     }
-
     /**
      * @return string
      */
@@ -153,9 +139,9 @@ class AdditionalInformation
     {
         return $this->deliveryDate;
     }
-
     /**
      * @param string $deliveryDate
+     *
      * @return AdditionalInformation
      */
     public function withDeliveryDate(string $deliveryDate)
@@ -164,7 +150,6 @@ class AdditionalInformation
         $new->deliveryDate = $deliveryDate;
         return $new;
     }
-
     /**
      * @return string
      */
@@ -172,9 +157,9 @@ class AdditionalInformation
     {
         return $this->referenceNumber;
     }
-
     /**
      * @param string $referenceNumber
+     *
      * @return AdditionalInformation
      */
     public function withReferenceNumber(string $referenceNumber)
@@ -183,7 +168,6 @@ class AdditionalInformation
         $new->referenceNumber = $referenceNumber;
         return $new;
     }
-
     /**
      * @return string
      */
@@ -191,9 +175,9 @@ class AdditionalInformation
     {
         return $this->message;
     }
-
     /**
      * @param $message
+     *
      * @return AdditionalInformation
      */
     public function withMessage($message)
@@ -202,8 +186,8 @@ class AdditionalInformation
         $new->message = $message;
         return $new;
     }
-
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
         if ($this->orderNo !== null) {
             $data['order_no'] = $this->orderNo;
@@ -230,5 +214,24 @@ class AdditionalInformation
             $data['message'] = $this->message;
         }
         return $data;
+    }
+    /**
+     * Create an API response object from the HTTP response from the API server.
+     *
+     * @param array $data
+     *
+     * @return self
+     */
+    public static function createFromArray(array $data)
+    {
+        $info = new self();
+        $info->orderNo = $data['order_no'];
+        $info->orderDate = $data['order_date'];
+        $info->ourReference = $data['our_reference'];
+        $info->yourReference = $data['your_reference'];
+        $info->shippingDate = $data['shipping_date'];
+        $info->deliveryDate = $data['delivery_date'];
+        $info->referenceNumber = $data['reference_number'];
+        $info->message = $data['message'];
     }
 }

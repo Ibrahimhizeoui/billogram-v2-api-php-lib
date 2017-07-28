@@ -1,61 +1,38 @@
 <?php
-
 namespace Billogram\Model\Customer;
-
+use Billogram\Model\CreatableFromArray;
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
-class CustomerDeliveryAddress
+class CustomerDeliveryAddress implements CreatableFromArray
 {
     /**
      * @var string
      */
     private $name;
-
     /**
      * @var string
      */
     private $streetAddress;
-
     /**
      * @var string
      */
     private $careOf;
-
     /**
      * @var string
      */
     private $zipCode;
-
     /**
      * @var string
      */
     private $city;
-
     /**
      * @var string
      */
     private $country;
-
-    /**
-     *
-     * @param string $name
-     * @param string $streetAddress
-     * @param string $careOf
-     * @param string $zipCode
-     * @param string $city
-     * @param string $country
-     */
-    public function __construct($name, $streetAddress, $careOf, $zipCode, $city, $country)
+    public function __construct()
     {
-        $this->name = $name;
-        $this->streetAddress = $streetAddress;
-        $this->careOf = $careOf;
-        $this->zipCode = $zipCode;
-        $this->city = $city;
-        $this->country = $country;
     }
-
     /**
      * @return string
      */
@@ -63,15 +40,17 @@ class CustomerDeliveryAddress
     {
         return $this->name;
     }
-
     /**
      * @param string $name
+     *
+     * @return CustomerDeliveryAddress
      */
-    public function setName(string $name)
+    public function withName(string $name)
     {
-        $this->name = $name;
+        $new = clone $this;
+        $new->name = $name;
+        return $new;
     }
-
     /**
      * @return string
      */
@@ -79,15 +58,17 @@ class CustomerDeliveryAddress
     {
         return $this->streetAddress;
     }
-
     /**
      * @param string $streetAddress
+     *
+     * @return CustomerDeliveryAddress
      */
-    public function setStreetAddress(string $streetAddress)
+    public function withStreetAddress(string $streetAddress)
     {
-        $this->streetAddress = $streetAddress;
+        $new = clone $this;
+        $new->streetAddress = $streetAddress;
+        return $new;
     }
-
     /**
      * @return string
      */
@@ -95,15 +76,17 @@ class CustomerDeliveryAddress
     {
         return $this->careOf;
     }
-
     /**
      * @param string $careOf
+     *
+     * @return CustomerDeliveryAddress
      */
-    public function setCareOf(string $careOf)
+    public function withCareOf(string $careOf)
     {
-        $this->careOf = $careOf;
+        $new = clone $this;
+        $new->zipCode = $careOf;
+        return $new;
     }
-
     /**
      * @return string
      */
@@ -111,15 +94,17 @@ class CustomerDeliveryAddress
     {
         return $this->zipCode;
     }
-
     /**
      * @param string $zipCode
+     *
+     * @return CustomerDeliveryAddress
      */
-    public function setZipCode(string $zipCode)
+    public function withZipCode(string $zipCode)
     {
-        $this->zipCode = $zipCode;
+        $new = clone $this;
+        $new->zipCode = $zipCode;
+        return $new;
     }
-
     /**
      * @return string
      */
@@ -127,15 +112,17 @@ class CustomerDeliveryAddress
     {
         return $this->city;
     }
-
     /**
      * @param string $city
+     *
+     * @return CustomerDeliveryAddress
      */
-    public function setCity(string $city)
+    public function withCity(string $city)
     {
-        $this->city = $city;
+        $new = clone $this;
+        $new->city = $city;
+        return $new;
     }
-
     /**
      * @return string
      */
@@ -143,12 +130,56 @@ class CustomerDeliveryAddress
     {
         return $this->country;
     }
-
     /**
      * @param string $country
+     *
+     * @return CustomerDeliveryAddress
      */
-    public function setCountry(string $country)
+    public function withCountry(string $country)
     {
-        $this->country = $country;
+        $new = clone $this;
+        $new->country = $country;
+        return $new;
+    }
+    public function toArray()
+    {
+        $data = [];
+        if ($this->name !== null) {
+            $data['name'] = $this->name;
+        }
+        if ($this->streetAddress !== null) {
+            $data['street_address'] = $this->streetAddress;
+        }
+        if ($this->careOf !== null) {
+            $data['careof'] = $this->careOf;
+        }
+        if ($this->zipCode !== null) {
+            $data['zipcode'] = $this->zipCode;
+        }
+        if ($this->city !== null) {
+            $data['city'] = $this->city;
+        }
+        if ($this->country !== null) {
+            $data['country'] = $this->country;
+        }
+        return $data;
+    }
+    /**
+     * Create an API response object from the HTTP response from the API server.
+     *
+     * @param array $data
+     *
+     * @return self
+     */
+    public static function createFromArray(array $data)
+    {
+        $customerDeliveryAddress = new self();
+        $customerDeliveryAddress->name = $data['name'];
+        $customerDeliveryAddress->streetAddress = $data['street_address'];
+        $customerDeliveryAddress->careOf = $data['careof'];
+        $customerDeliveryAddress->zipCode = $data['zipcode'];
+        $customerDeliveryAddress->city = $data['city'];
+        $customerDeliveryAddress->country = $data['country'];
+        return $customerDeliveryAddress;
     }
 }

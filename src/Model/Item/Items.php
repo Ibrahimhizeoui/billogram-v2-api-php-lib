@@ -1,20 +1,22 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Item;
-
 
 use Billogram\Exception\InvalidArgumentException;
 use Billogram\Model\CreatableFromArray;
 use Billogram\Model\Customer\Item;
 
-class Customers implements CreatableFromArray
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
+class Items implements CreatableFromArray
 {
     /**
      * @var Item[]
      */
     private $items;
-
 
     private function __construct(array $items)
     {
@@ -24,7 +26,6 @@ class Customers implements CreatableFromArray
             }
         }
         $this->items = $items;
-
     }
 
     public static function createFromArray(array $data)
@@ -37,7 +38,6 @@ class Customers implements CreatableFromArray
         }
 
         return new self($items);
-
     }
 
     /**

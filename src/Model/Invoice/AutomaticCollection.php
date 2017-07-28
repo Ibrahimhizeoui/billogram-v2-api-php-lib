@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Billogram\Model\Invoice;
 
-
 use Billogram\Model\CreatableFromArray;
 
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
-class AutomaticReminder implements CreatableFromArray
+class AutomaticCollection implements CreatableFromArray
 {
     /**
      * @var int
@@ -18,9 +17,9 @@ class AutomaticReminder implements CreatableFromArray
     private $delayDays;
 
     /**
-     * @var string
+     * @var int
      */
-    private $message;
+    private $amount;
 
     public function __construct()
     {
@@ -32,8 +31,8 @@ class AutomaticReminder implements CreatableFromArray
         if ($this->delayDays !== null) {
             $data['delay_days'] = $this->delayDays;
         }
-        if ($this->message !== null) {
-            $data['message'] = $this->message;
+        if ($this->amount !== null) {
+            $data['message'] = $this->amount;
         }
 
         return $data;
@@ -50,7 +49,7 @@ class AutomaticReminder implements CreatableFromArray
     {
         $automaticReminder = new self();
         $automaticReminder->delayDays = $data['delay_days'];
-        $automaticReminder->message = $data['message'];
+        $automaticReminder->amount = $data['amount'];
 
         return $automaticReminder;
     }

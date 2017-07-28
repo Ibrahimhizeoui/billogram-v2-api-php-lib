@@ -1,40 +1,26 @@
 <?php
-
 namespace Billogram\Model\Customer;
-
+use Billogram\Model\CreatableFromArray;
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
-class CustomerContact
+class CustomerContact implements CreatableFromArray
 {
     /**
      * @var string
      */
     private $name;
-
     /**
      * @var string
      */
     private $email;
-
     /**
      * @var string
      */
     private $phone;
-
-    /**
-     *
-     * @param string $name
-     * @param string $email
-     * @param string $phone
-     */
-    public function __construct($name, $email, $phone)
+    public function __construct()
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->phone = $phone;
     }
-
     /**
      * @return string
      */
@@ -42,15 +28,17 @@ class CustomerContact
     {
         return $this->name;
     }
-
     /**
      * @param string $name
+     *
+     * @return CustomerContact
      */
-    public function setName(string $name)
+    public function withName(string $name)
     {
-        $this->name = $name;
+        $new = clone $this;
+        $new->name = $name;
+        return $new;
     }
-
     /**
      * @return string
      */
@@ -58,15 +46,17 @@ class CustomerContact
     {
         return $this->email;
     }
-
     /**
      * @param string $email
+     *
+     * @return CustomerContact
      */
     public function setEmail(string $email)
     {
-        $this->email = $email;
+        $new = clone $this;
+        $new->email = $email;
+        return $new;
     }
-
     /**
      * @return string
      */
@@ -74,17 +64,44 @@ class CustomerContact
     {
         return $this->phone;
     }
-
     /**
      * @param string $phone
+     *
+     * @return CustomerContact
      */
     public function setPhone(string $phone)
     {
-        $this->phone = $phone;
+        $new = clone $this;
+        $new->phone = $phone;
+        return $new;
     }
-
-    public function toArray(){
-        $data['contact'][]=['name' => $this->name , 'email' => $this->email, 'phone' => $this->phone];
+    public function toArray()
+    {
+        $data = [];
+        if ($this->name !== null) {
+            $data['name'] = $this->name;
+        }
+        if ($this->email !== null) {
+            $data['email'] = $this->email;
+        }
+        if ($this->phone !== null) {
+            $data['phone'] = $this->phone;
+        }
         return $data;
+    }
+    /**
+     * Create an API response object from the HTTP response from the API server.
+     *
+     * @param array $data
+     *
+     * @return self
+     */
+    public static function createFromArray(array $data)
+    {
+        $contact = new self();
+        $contact->name = $data['name'];
+        $contact->email = $data['email'];
+        $contact->phone = $data['phone'];
+        return $contact;
     }
 }
