@@ -105,5 +105,4 @@ final class BillogramClient
     {
         return new Api\Invoice($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
-
 }
