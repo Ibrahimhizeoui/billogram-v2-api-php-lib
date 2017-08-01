@@ -6,7 +6,6 @@ namespace Billogram\Tests;
 
 use Http\Client\Curl\Client as HttplugClient;
 use Http\Client\HttpClient;
-use Http\Discovery\ClassDiscovery;
 use Http\Mock\Client as MockedHttpClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
