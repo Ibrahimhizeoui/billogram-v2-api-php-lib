@@ -106,7 +106,6 @@ class Item extends HttpApi
 
     /**
      * @param int   $itemNo
-     * @param Model $item
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *
@@ -114,9 +113,9 @@ class Item extends HttpApi
      *
      * @see https://billogram.com/api/documentation#items_delete
      */
-    public function delete(int $itemNo, Model $item)
+    public function delete(int $itemNo)
     {
-        $response = $this->httpDelete('/item/'.$itemNo, $item->toArray());
+        $response = $this->httpDelete('/item/'.$itemNo);
         if (!$this->hydrator) {
             return $response;
         }
