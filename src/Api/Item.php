@@ -6,7 +6,7 @@ namespace Billogram\Api;
 
 use Billogram\Exception\Domain\ValidationException;
 use Billogram\Model\Item\Item as Model;
-use Billogram\Model\Item\Items;
+use Billogram\Model\Item\CollectionItem;
 
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
@@ -32,7 +32,7 @@ class Item extends HttpApi
             $this->handleErrors($response);
         }
 
-        return $this->hydrator->hydrate($response, Items::class);
+        return $this->hydrator->hydrate($response, CollectionItem::class);
     }
 
     /**
