@@ -6,7 +6,6 @@ namespace Billogram\Tests\Api;
 
 use Billogram\ApiClient;
 use Billogram\HttpClientConfigurator;
-use Billogram\Model\Item\BaseItem;
 use Billogram\Model\Item\Bookkeeping;
 use Billogram\Model\Item\Item as Model;
 use Billogram\Model\Item\CollectionItem;
