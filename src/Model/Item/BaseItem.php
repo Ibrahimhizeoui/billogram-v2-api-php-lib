@@ -242,8 +242,6 @@ abstract class BaseItem implements CreatableFromArray
      *
      * @return Item
      */
-
-
     public function toArray()
     {
         $data = [];
