@@ -69,7 +69,7 @@ class ItemTest extends BaseTestCase
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = ApiClient::configure($httpClientConfigurator);
         $customerDeleted = $apiClient->items()->delete($itemNo);
-        $this->assertInstanceOf(BaseItem::class, $customerDeleted);
+        $this->assertInstanceOf(Item::class, $customerDeleted);
     }
 
     public function testFetch(int $itemNo = 5)
