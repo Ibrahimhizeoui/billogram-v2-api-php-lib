@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Billogram\Model\Item;
 
-use Billogram\Model\CreatableFromArray;
-
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
