@@ -62,14 +62,13 @@ class ItemTest extends BaseTestCase
         $this->assertInstanceOf(Item::class, $itemUpdated);
     }
 
-    public function testDelete(int $itemNo = 1)
+    public function testDelete(int $itemNo = 5)
     {
-        $item = $this->testFetch(5);
         $cacheClient = $this->getHttpClient();
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = ApiClient::configure($httpClientConfigurator);
-        $customerDeleted = $apiClient->items()->delete($itemNo, $item);
+        $customerDeleted = $apiClient->items()->delete($itemNo);
         $this->assertInstanceOf(BaseItem::class, $customerDeleted);
     }
 
@@ -80,7 +79,7 @@ class ItemTest extends BaseTestCase
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = ApiClient::configure($httpClientConfigurator);
         $itemFetched = $apiClient->items()->fetch($itemNo, ['']);
-        $this->assertInstanceOf(BaseItem::class, $itemFetched);
+        $this->assertInstanceOf(Item::class, $itemFetched);
 
         return $itemFetched;
     }
