@@ -238,7 +238,9 @@ abstract class BaseItem implements CreatableFromArray
     /**
      * Create an API response object from the HTTP response from the API server.
      *
-     * @return array
+     * @param array $data
+     *
+     * @return Item
      */
     public function toArray()
     {
