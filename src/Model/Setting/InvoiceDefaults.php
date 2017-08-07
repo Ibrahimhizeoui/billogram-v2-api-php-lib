@@ -1,14 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\CreatableFromArray;
 
 class InvoiceDefaults implements CreatableFromArray
 {
-
     /**
      * Create an API response object from the HTTP response from the API server.
      *
@@ -21,8 +20,10 @@ class InvoiceDefaults implements CreatableFromArray
         return null;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
+
         return $data;
     }
 }

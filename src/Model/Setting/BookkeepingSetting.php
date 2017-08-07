@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\CreatableFromArray;
 
@@ -118,12 +118,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $incomeAccountForVat25
+     *
      * @return BookkeepingSetting
      */
     public function withIncomeAccountForVat25(string $incomeAccountForVat25)
     {
         $new = clone $this;
         $new->incomeAccountForVat25 = $incomeAccountForVat25;
+
         return $new;
     }
 
@@ -137,12 +139,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $incomeAccountForVat12
+     *
      * @return BookkeepingSetting
      */
     public function withIncomeAccountForVat12(string $incomeAccountForVat12)
     {
         $new = clone $this;
         $new->incomeAccountForVat12 = $incomeAccountForVat12;
+
         return $new;
     }
 
@@ -156,12 +160,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $incomeAccountForVat6
+     *
      * @return BookkeepingSetting
      */
     public function withIncomeAccountForVat6(string $incomeAccountForVat6)
     {
         $new = clone $this;
         $new->incomeAccountForVat6 = $incomeAccountForVat6;
+
         return $new;
     }
 
@@ -175,12 +181,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $incomeAccountForVat0
+     *
      * @return BookkeepingSetting
      */
     public function withIncomeAccountForVat0(string $incomeAccountForVat0)
     {
         $new = clone $this;
         $new->incomeAccountForVat0 = $incomeAccountForVat0;
+
         return $new;
     }
 
@@ -194,12 +202,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $reversedVatAccount
+     *
      * @return BookkeepingSetting
      */
     public function withReversedVatAccount(string $reversedVatAccount)
     {
         $new = clone $this;
         $new->reversedVatAccount = $reversedVatAccount;
+
         return $new;
     }
 
@@ -213,12 +223,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $vatAccountForVat25
+     *
      * @return BookkeepingSetting
      */
     public function withVatAccountForVat25(string $vatAccountForVat25)
     {
         $new = clone $this;
         $new->vatAccountForVat25 = $vatAccountForVat25;
+
         return $new;
     }
 
@@ -232,12 +244,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $vatAccountForVat12
+     *
      * @return BookkeepingSetting
      */
     public function withVatAccountForVat12(string $vatAccountForVat12)
     {
         $new = clone $this;
         $new->vatAccountForVat12 = $vatAccountForVat12;
+
         return $new;
     }
 
@@ -251,12 +265,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $vatAccountForVat6
+     *
      * @return BookkeepingSetting
      */
     public function withVatAccountForVat6(string $vatAccountForVat6)
     {
         $new = clone $this;
         $new->vatAccountForVat6 = $vatAccountForVat6;
+
         return $new;
     }
 
@@ -270,12 +286,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $accountReceivableAccount
+     *
      * @return BookkeepingSetting
      */
     public function withAccountReceivableAccount(string $accountReceivableAccount)
     {
         $new = clone $this;
         $new->accountReceivableAccount = $accountReceivableAccount;
+
         return $new;
     }
 
@@ -289,12 +307,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $clientFundsAccount
+     *
      * @return BookkeepingSetting
      */
     public function withClientFundsAccount(string $clientFundsAccount)
     {
         $new = clone $this;
         $new->clientFundsAccount = $clientFundsAccount;
+
         return $new;
     }
 
@@ -308,12 +328,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $bankingAccount
+     *
      * @return BookkeepingSetting
      */
     public function withBankingAccount(string $bankingAccount)
     {
         $new = clone $this;
         $new->bankingAccount = $bankingAccount;
+
         return $new;
     }
 
@@ -327,12 +349,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $interestFeeAccount
+     *
      * @return BookkeepingSetting
      */
     public function withInterestFeeAccount(string $interestFeeAccount)
     {
         $new = clone $this;
         $new->interestFeeAccount = $interestFeeAccount;
+
         return $new;
     }
 
@@ -346,12 +370,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $reminderFeeAccount
+     *
      * @return BookkeepingSetting
      */
     public function withReminderFeeAccount(string $reminderFeeAccount)
     {
         $new = clone $this;
         $new->reminderFeeAccount = $reminderFeeAccount;
+
         return $new;
     }
 
@@ -365,12 +391,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $roundingAccount
+     *
      * @return BookkeepingSetting
      */
     public function withRoundingAccount(string $roundingAccount)
     {
         $new = clone $this;
         $new->roundingAccount = $roundingAccount;
+
         return $new;
     }
 
@@ -384,12 +412,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $factoringReceivableAccount
+     *
      * @return BookkeepingSetting
      */
     public function withFactoringReceivableAccount(string $factoringReceivableAccount)
     {
         $new = clone $this;
         $new->factoringReceivableAccount = $factoringReceivableAccount;
+
         return $new;
     }
 
@@ -403,12 +433,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $nonAllocatedAccount
+     *
      * @return BookkeepingSetting
      */
     public function withNonAllocatedAccount(string $nonAllocatedAccount)
     {
         $new = clone $this;
         $new->nonAllocatedAccount = $nonAllocatedAccount;
+
         return $new;
     }
 
@@ -422,12 +454,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $incomePayoutAccount
+     *
      * @return BookkeepingSetting
      */
     public function withIncomePayoutAccount(string $incomePayoutAccount)
     {
         $new = clone $this;
         $new->incomePayoutAccount = $incomePayoutAccount;
+
         return $new;
     }
 
@@ -441,12 +475,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $writtenDownReceivablesAccount
+     *
      * @return BookkeepingSetting
      */
     public function withWrittenDownReceivablesAccount(string $writtenDownReceivablesAccount)
     {
         $new = clone $this;
         $new->writtenDownReceivablesAccount = $writtenDownReceivablesAccount;
+
         return $new;
     }
 
@@ -460,12 +496,14 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param string $expectedLossAccount
+     *
      * @return BookkeepingSetting
      */
     public function withExpectedLossAccount(string $expectedLossAccount)
     {
         $new = clone $this;
         $new->expectedLossAccount = $expectedLossAccount;
+
         return $new;
     }
 
@@ -479,15 +517,16 @@ class BookkeepingSetting implements CreatableFromArray
 
     /**
      * @param array $regionalSweden
+     *
      * @return BookkeepingSetting
      */
     public function withRegionalSweden(array $regionalSweden)
     {
         $new = clone $this;
         $new->regionalSweden = $regionalSweden;
+
         return $new;
     }
-
 
     /**
      * Create an API response object from the HTTP response from the API server.
@@ -501,8 +540,10 @@ class BookkeepingSetting implements CreatableFromArray
         return null;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
+
         return $data;
     }
 }

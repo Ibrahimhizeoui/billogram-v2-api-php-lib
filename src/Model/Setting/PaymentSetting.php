@@ -1,14 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\CreatableFromArray;
 
 class PaymentSetting implements CreatableFromArray
 {
-
     /**
      * @var string
      */
@@ -39,12 +38,14 @@ class PaymentSetting implements CreatableFromArray
 
     /**
      * @param $bankgiro
+     *
      * @return PaymentSetting
      */
     public function withBankgiro($bankgiro)
     {
         $new = clone $this;
         $new->bankgiro = $bankgiro;
+
         return $new;
     }
 
@@ -58,12 +59,14 @@ class PaymentSetting implements CreatableFromArray
 
     /**
      * @param string $plusgiro
+     *
      * @return PaymentSetting
      */
     public function withPlusgiro(string $plusgiro)
     {
         $new = clone $this;
         $new->plusgiro = $plusgiro;
+
         return $new;
     }
 
@@ -77,12 +80,14 @@ class PaymentSetting implements CreatableFromArray
 
     /**
      * @param $domesticBankAccount
+     *
      * @return PaymentSetting
      */
     public function withDomesticBankAccount($domesticBankAccount)
     {
         $new = clone $this;
         $new->domesticBankAccount = $domesticBankAccount;
+
         return $new;
     }
 
@@ -96,15 +101,16 @@ class PaymentSetting implements CreatableFromArray
 
     /**
      * @param $internationalBankAccount
+     *
      * @return PaymentSetting
      */
     public function withInternationalBankAccount($internationalBankAccount)
     {
         $new = clone $this;
         $new->internationalBankAccount = $internationalBankAccount;
+
         return $new;
     }
-
 
     /**
      * Create an API response object from the HTTP response from the API server.
@@ -119,23 +125,25 @@ class PaymentSetting implements CreatableFromArray
         $paymentSetting->bankgiro = $data['bankgiro'] ?? null;
         $paymentSetting->plusgiro = $data['plusgiro'] ?? null;
         $paymentSetting->domesticBankAccount = ['account_no' => $data['domestic_bank_account']['account_no'], 'clearing_no' => $data['domestic_bank_account']['clearing_no']] ?? null;
-        $paymentSetting->internationalBankAccount = ['bank'=>$data['international_bank_account']['bank'],'iban'=>$data['international_bank_account']['iban'],'bic'=>$data['international_bank_account']['bic'],'swift'=>$data['international_bank_account']['swift']] ?? null;
+        $paymentSetting->internationalBankAccount = ['bank' => $data['international_bank_account']['bank'], 'iban' => $data['international_bank_account']['iban'], 'bic' => $data['international_bank_account']['bic'], 'swift' => $data['international_bank_account']['swift']] ?? null;
+
         return null;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
-        if ($this->bankgiro !== null){
+        if ($this->bankgiro !== null) {
             $data['bankgiro'] = $this->bankgiro;
         }
-        if ($this->plusgiro !== null){
+        if ($this->plusgiro !== null) {
             $data['plusgiro'] = $this->plusgiro;
         }
-        if ($this->domesticBankAccount['account_no'] !== null && $this->domesticBankAccount['clearing_no'] !== null){
+        if ($this->domesticBankAccount['account_no'] !== null && $this->domesticBankAccount['clearing_no'] !== null) {
             $data['domestic_bank_account']['account_no'] = $this->domesticBankAccount['account_no'];
             $data['domestic_bank_account']['clearing_no'] = $this->domesticBankAccount['clearing_no'];
         }
-        if ($this->internationalBankAccount['iban'] !== null){
+        if ($this->internationalBankAccount['iban'] !== null) {
             $data['international_bank_account']['iban'] = $this->internationalBankAccount['iban'];
 
             if ($this->internationalBankAccount['iban'] !== null && $this->internationalBankAccount['bank'] !== null) {

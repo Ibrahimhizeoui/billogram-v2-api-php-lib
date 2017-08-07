@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\BaseAddress;
 
@@ -23,16 +23,16 @@ class InvoiceAddress extends BaseAddress
 
     /**
      * @param string $email
+     *
      * @return InvoiceAddress
      */
     public function withEmail(string $email)
     {
         $new = clone $this;
         $new->email = $email;
+
         return $new;
     }
-
-
 
     /**
      * Create an API response object from the HTTP response from the API server.

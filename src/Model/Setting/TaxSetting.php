@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\CreatableFromArray;
 
@@ -33,12 +33,14 @@ class TaxSetting implements CreatableFromArray
 
     /**
      * @param bool $isVatRegistered
+     *
      * @return TaxSetting
      */
     public function withIsVatRegistered(bool $isVatRegistered)
     {
         $new = clone $this;
         $new->isVatRegistered = $isVatRegistered;
+
         return $new;
     }
 
@@ -52,12 +54,14 @@ class TaxSetting implements CreatableFromArray
 
     /**
      * @param bool $hasFskatt
+     *
      * @return TaxSetting
      */
     public function withHasFskatt(bool $hasFskatt)
     {
         $new = clone $this;
         $new->hasFskatt = $hasFskatt;
+
         return $new;
     }
 
@@ -71,12 +75,14 @@ class TaxSetting implements CreatableFromArray
 
     /**
      * @param $vatNo
+     *
      * @return TaxSetting
      */
     public function withVatNo($vatNo)
     {
         $new = clone $this;
         $new->vatNo = $vatNo;
+
         return $new;
     }
 
@@ -93,20 +99,23 @@ class TaxSetting implements CreatableFromArray
         $tax->isVatRegistered = $data['is_vat_registered'] ?? null;
         $tax->hasFskatt = $data['has_fskatt'] ?? null;
         $tax->vatNo = $data['vat_no'] ?? null;
+
         return $tax;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
-        if ($this->isVatRegistered !== null){
+        if ($this->isVatRegistered !== null) {
             $data['is_vat_registered'] = $this->isVatRegistered;
         }
-        if ($this->hasFskatt !== null){
+        if ($this->hasFskatt !== null) {
             $data['has_fskatt'] = $this->hasFskatt;
         }
-        if ($this->vatNo !== null){
+        if ($this->vatNo !== null) {
             $data['vat_no'] = $this->vatNo;
         }
+
         return $data;
     }
 }

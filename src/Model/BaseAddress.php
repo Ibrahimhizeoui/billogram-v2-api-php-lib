@@ -1,12 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model;
 
-
 abstract class BaseAddress implements CreatableFromArray
 {
-
     /**
      * @var string
      */
@@ -52,8 +51,6 @@ abstract class BaseAddress implements CreatableFromArray
 
         return $new;
     }
-
-
 
     /**
      * @return string
@@ -160,5 +157,4 @@ abstract class BaseAddress implements CreatableFromArray
 
         return $data;
     }
-
 }

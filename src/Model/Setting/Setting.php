@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
@@ -67,12 +68,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param string $name
+     *
      * @return Setting
      */
     public function withName(string $name)
     {
         $new = new self();
         $new->name = $name;
+
         return $new;
     }
 
@@ -86,12 +89,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param string $orgNo
+     *
      * @return Setting
      */
     public function withOrgNo(string $orgNo)
     {
         $new = new self();
         $new->orgNo = $orgNo;
+
         return $new;
     }
 
@@ -105,12 +110,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param Contact $contact
+     *
      * @return Setting
      */
     public function withContact(Contact $contact)
     {
         $new = new self();
         $new->contact = $contact;
+
         return $new;
     }
 
@@ -124,12 +131,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param BusinessAddress $businessAddress
+     *
      * @return Setting
      */
     public function withBusinessAddress(BusinessAddress $businessAddress)
     {
         $new = new self();
         $new->businessAddress = $businessAddress;
+
         return $new;
     }
 
@@ -143,12 +152,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param InvoiceAddress $invoiceAddress
+     *
      * @return Setting
      */
     public function withInvoiceAddress(InvoiceAddress $invoiceAddress)
     {
         $new = new self();
         $new->invoiceAddress = $invoiceAddress;
+
         return $new;
     }
 
@@ -162,12 +173,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param VisitingAddress $visitingAddress
+     *
      * @return Setting
      */
     public function withVisitingAddress(VisitingAddress $visitingAddress)
     {
         $new = new self();
         $new->visitingAddress = $visitingAddress;
+
         return $new;
     }
 
@@ -181,12 +194,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param $payment
+     *
      * @return Setting
      */
     public function withPayment($payment)
     {
         $new = new self();
         $new->payment = $payment;
+
         return $new;
     }
 
@@ -200,12 +215,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param $tax
+     *
      * @return Setting
      */
     public function withTax($tax)
     {
         $new = new self();
         $new->tax = $tax;
+
         return $new;
     }
 
@@ -219,12 +236,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param $bookkeeping
+     *
      * @return Setting
      */
     public function withBookkeeping($bookkeeping)
     {
         $new = new self();
         $new->bookkeeping = $bookkeeping;
+
         return $new;
     }
 
@@ -238,12 +257,14 @@ class Setting implements CreatableFromArray
 
     /**
      * @param $invoices
+     *
      * @return Setting
      */
     public function withInvoices($invoices)
     {
         $new = new self();
         $new->invoices = $invoices;
+
         return $new;
     }
 
@@ -266,10 +287,12 @@ class Setting implements CreatableFromArray
         $setting->payment = Contact::createFromArray($data['data']['payment']);
         $setting->bookkeeping = Contact::createFromArray($data['data']['bookkeeping']);
         $setting->invoices = Contact::createFromArray($data['data']['invoices']);
+
         return null;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
         if ($this->name !== null) {
             $data['name'] = $this->name;
@@ -301,6 +324,7 @@ class Setting implements CreatableFromArray
         if ($this->invoices !== null) {
             $data['invoices'] = $this->invoices->toArray();
         }
+
         return $data;
     }
 }

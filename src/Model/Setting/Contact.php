@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\CreatableFromArray;
 
@@ -149,5 +149,4 @@ class Contact implements CreatableFromArray
 
         return $contact;
     }
-
 }
