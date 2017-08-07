@@ -61,7 +61,6 @@ class ItemTest extends BaseTestCase
         $this->assertInstanceOf(Item::class, $itemUpdated);
     }
 
-
     public function testDelete(int $itemNo = 6)
     {
         $cacheClient = $this->getHttpClient();
