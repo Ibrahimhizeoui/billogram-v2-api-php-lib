@@ -54,11 +54,16 @@ class InvoiceAddress extends BaseAddress
         return $invoiceAddress;
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         $data = parent::toArray();
         if ($this->email !== null) {
             $data['email'] = $this->email;
         }
+
+        return $data;
     }
 }

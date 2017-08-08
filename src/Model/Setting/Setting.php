@@ -74,7 +74,7 @@ class Setting implements CreatableFromArray
      */
     public function withName(string $name)
     {
-        $new = new self();
+        $new = clone $this;
         $new->name = $name;
 
         return $new;
@@ -95,7 +95,7 @@ class Setting implements CreatableFromArray
      */
     public function withOrgNo(string $orgNo)
     {
-        $new = new self();
+        $new = clone $this;
         $new->orgNo = $orgNo;
 
         return $new;
@@ -116,7 +116,7 @@ class Setting implements CreatableFromArray
      */
     public function withContact(Contact $contact)
     {
-        $new = new self();
+        $new = clone $this;
         $new->contact = $contact;
 
         return $new;
@@ -137,7 +137,7 @@ class Setting implements CreatableFromArray
      */
     public function withBusinessAddress(BusinessAddress $businessAddress)
     {
-        $new = new self();
+        $new = clone $this;
         $new->businessAddress = $businessAddress;
 
         return $new;
@@ -158,7 +158,7 @@ class Setting implements CreatableFromArray
      */
     public function withInvoiceAddress(InvoiceAddress $invoiceAddress)
     {
-        $new = new self();
+        $new = clone $this;
         $new->invoiceAddress = $invoiceAddress;
 
         return $new;
@@ -179,7 +179,7 @@ class Setting implements CreatableFromArray
      */
     public function withVisitingAddress(VisitingAddress $visitingAddress)
     {
-        $new = new self();
+        $new = clone $this;
         $new->visitingAddress = $visitingAddress;
 
         return $new;
@@ -200,7 +200,7 @@ class Setting implements CreatableFromArray
      */
     public function withPayment($payment)
     {
-        $new = new self();
+        $new = clone $this;
         $new->payment = $payment;
 
         return $new;
@@ -221,7 +221,7 @@ class Setting implements CreatableFromArray
      */
     public function withTax($tax)
     {
-        $new = new self();
+        $new = clone $this;
         $new->tax = $tax;
 
         return $new;
@@ -242,7 +242,7 @@ class Setting implements CreatableFromArray
      */
     public function withBookkeeping($bookkeeping)
     {
-        $new = new self();
+        $new = clone $this;
         $new->bookkeeping = $bookkeeping;
 
         return $new;
@@ -263,7 +263,7 @@ class Setting implements CreatableFromArray
      */
     public function withInvoices($invoices)
     {
-        $new = new self();
+        $new = clone $this;
         $new->invoices = $invoices;
 
         return $new;

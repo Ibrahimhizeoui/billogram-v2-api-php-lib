@@ -6,6 +6,7 @@ namespace Billogram\Tests\Api;
 
 use Billogram\BillogramClient;
 use Billogram\HttpClientConfigurator;
+use Billogram\Model\Setting\AutomaticCollection;
 use Billogram\Model\Setting\AutomaticReminder;
 use Billogram\Model\Setting\BookkeepingSetting;
 use Billogram\Model\Setting\BusinessAddress;
@@ -44,8 +45,11 @@ class SettingTest extends BaseTestCase
                                                             'rounding_account'=>'', 'factoring_receivable_account'=>'', 'non_allocated_account'=>'', 'income_payout_account'=>'', 'written_down_receivables_account'=>'', 'expected_loss_account'=>'',
                                                             'regional_sweden'=>['rotavdrag_account'=>''] ]);
         $invoices = InvoiceDefaults::createFromArray(['default_message'=> 'hey hey', 'default_messagedefault_message'=> 8.5, 'default_reminder_fee'=> 10, 'default_invoice_fee'=> 30,
-                                                            'automatic_reminders'=>AutomaticReminder::createFromArray(['delay_days'=>5,'message'=>'HEY']),
-                                                            'automatic_collection'=>AutomaticReminder::createFromArray(['settings'=>'all_fees','amount'=>100])]);
+                                                            'automatic_reminders'=>['delay_days'=>5,'message'=>'HEY'],
+                                                            'automatic_writeoff' => ['settings'=>'all_fees','amount'=>100],
+                                                            'automatic_collection'=>['delay_days'=>5,'amount'=>100]]);
+        $setting = $setting->withName('debg');
+        $setting = $setting->withOrgNo('556667-0591');
         $setting = $setting->withContact($contact);
         $setting = $setting->withBusinessAddress($address);
         $setting = $setting->withVisitingAddress($visitingAddress);
@@ -58,8 +62,8 @@ class SettingTest extends BaseTestCase
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
-        $setting = $apiClient->setting()->update();
-        $this->assertInstanceOf(Setting::class, $setting);
+        $settingFinal = $apiClient->setting()->update($setting);
+        $this->assertInstanceOf(Setting::class, $settingFinal);
     }
 
     /**

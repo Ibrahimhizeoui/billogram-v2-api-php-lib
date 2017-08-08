@@ -31,9 +31,9 @@ class Settings extends HttpApi
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @link https://billogram.com/api/documentation#settings_fetch
      */
-    public function update()
+    public function update(Setting $setting)
     {
-        $response = $this->httpPUT('/settings');
+        $response = $this->httpPUT('/settings', $setting->toArray());
         if (!$this->hydrator) {
             return $response;
         }

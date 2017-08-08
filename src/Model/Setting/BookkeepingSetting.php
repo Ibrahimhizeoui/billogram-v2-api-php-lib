@@ -111,7 +111,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getIncomeAccountForVat25(): string
+    public function getIncomeAccountForVat25()
     {
         return $this->incomeAccountForVat25;
     }
@@ -132,7 +132,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getIncomeAccountForVat12(): string
+    public function getIncomeAccountForVat12()
     {
         return $this->incomeAccountForVat12;
     }
@@ -153,7 +153,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getIncomeAccountForVat6(): string
+    public function getIncomeAccountForVat6()
     {
         return $this->incomeAccountForVat6;
     }
@@ -174,7 +174,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getIncomeAccountForVat0(): string
+    public function getIncomeAccountForVat0()
     {
         return $this->incomeAccountForVat0;
     }
@@ -195,7 +195,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getReversedVatAccount(): string
+    public function getReversedVatAccount()
     {
         return $this->reversedVatAccount;
     }
@@ -216,7 +216,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getVatAccountForVat25(): string
+    public function getVatAccountForVat25()
     {
         return $this->vatAccountForVat25;
     }
@@ -237,7 +237,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getVatAccountForVat12(): string
+    public function getVatAccountForVat12()
     {
         return $this->vatAccountForVat12;
     }
@@ -258,7 +258,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getVatAccountForVat6(): string
+    public function getVatAccountForVat6()
     {
         return $this->vatAccountForVat6;
     }
@@ -279,7 +279,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getAccountReceivableAccount(): string
+    public function getAccountReceivableAccount()
     {
         return $this->accountReceivableAccount;
     }
@@ -300,7 +300,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getClientFundsAccount(): string
+    public function getClientFundsAccount()
     {
         return $this->clientFundsAccount;
     }
@@ -321,7 +321,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getBankingAccount(): string
+    public function getBankingAccount()
     {
         return $this->bankingAccount;
     }
@@ -342,7 +342,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getInterestFeeAccount(): string
+    public function getInterestFeeAccount()
     {
         return $this->interestFeeAccount;
     }
@@ -363,7 +363,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getReminderFeeAccount(): string
+    public function getReminderFeeAccount()
     {
         return $this->reminderFeeAccount;
     }
@@ -384,7 +384,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getRoundingAccount(): string
+    public function getRoundingAccount()
     {
         return $this->roundingAccount;
     }
@@ -405,7 +405,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getFactoringReceivableAccount(): string
+    public function getFactoringReceivableAccount()
     {
         return $this->factoringReceivableAccount;
     }
@@ -426,7 +426,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getNonAllocatedAccount(): string
+    public function getNonAllocatedAccount()
     {
         return $this->nonAllocatedAccount;
     }
@@ -447,7 +447,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getIncomePayoutAccount(): string
+    public function getIncomePayoutAccount()
     {
         return $this->incomePayoutAccount;
     }
@@ -468,7 +468,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getWrittenDownReceivablesAccount(): string
+    public function getWrittenDownReceivablesAccount()
     {
         return $this->writtenDownReceivablesAccount;
     }
@@ -489,7 +489,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return string
      */
-    public function getExpectedLossAccount(): string
+    public function getExpectedLossAccount()
     {
         return $this->expectedLossAccount;
     }
@@ -510,7 +510,7 @@ class BookkeepingSetting implements CreatableFromArray
     /**
      * @return array
      */
-    public function getRegionalSweden(): array
+    public function getRegionalSweden()
     {
         return $this->regionalSweden;
     }
@@ -540,7 +540,7 @@ class BookkeepingSetting implements CreatableFromArray
         $bookkeeping = new self();
         $bookkeeping->incomeAccountForVat25 = $data['income_account_for_vat_25'] ?? null;
         $bookkeeping->incomeAccountForVat12 = $data['income_account_for_vat_12'] ?? null;
-        $bookkeeping->incomeAccountForVat6 = $data['income_account_for_vat_06'] ?? null;
+        $bookkeeping->incomeAccountForVat6 = $data['income_account_for_vat_6'] ?? null;
         $bookkeeping->incomeAccountForVat0 = $data['income_account_for_vat_0'] ?? null;
         $bookkeeping->reversedVatAccount = $data['reversed_vat_account'] ?? null;
         $bookkeeping->vatAccountForVat25 = $data['vat_account_for_vat_25'] ?? null;
@@ -551,6 +551,7 @@ class BookkeepingSetting implements CreatableFromArray
         $bookkeeping->bankingAccount = $data['banking_account'] ?? null;
         $bookkeeping->interestFeeAccount = $data['interest_fee_account'] ?? null;
         $bookkeeping->reminderFeeAccount = $data['reminder_fee_account'] ?? null;
+        $bookkeeping->reminderAccount = $data['reminder_account'] ?? null;
         $bookkeeping->factoringReceivableAccount = $data['factoring_receivable_account'] ?? null;
         $bookkeeping->nonAllocatedAccount = $data['non_allocated_account'] ?? null;
         $bookkeeping->incomePayoutAccount = $data['income_payout_account'] ?? null;
@@ -599,6 +600,9 @@ class BookkeepingSetting implements CreatableFromArray
         }
         if ($this->interestFeeAccount !== null) {
             $data['interest_fee_account'] = $this->interestFeeAccount;
+        }
+        if ($this->roundingAccount !== null) {
+            $data['reminder_account'] = $this->roundingAccount;
         }
         if ($this->reminderFeeAccount !== null) {
             $data['reminder_fee_account'] = $this->reminderFeeAccount;

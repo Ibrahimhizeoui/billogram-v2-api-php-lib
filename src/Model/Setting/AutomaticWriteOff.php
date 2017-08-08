@@ -18,6 +18,46 @@ class AutomaticWriteOff implements CreatableFromArray
      */
     private $amount;
 
+    /**
+     * @return string
+     */
+    public function getSetting()
+    {
+        return $this->setting;
+    }
+
+    /**
+     * @param string $setting
+     * @return AutomaticWriteOff
+     */
+    public function withSetting(string $setting)
+    {
+        $new = clone $this;
+        $new->setting = $setting;
+        return $new;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param int $amount
+     * @return AutomaticWriteOff
+     */
+    public function withAmount(int $amount)
+    {
+        $new = clone $this;
+        $new->amount = $amount;
+        return $new;
+    }
+
+
+
     public function toArray(){
         $data = [];
         if($this->setting !== null && $this->amount !== null){
@@ -39,7 +79,7 @@ class AutomaticWriteOff implements CreatableFromArray
     {
         $automaticWriteoff = new self();
         $automaticWriteoff->setting = $data['settings'] ?? null;
-        $automaticWriteoff->amount = $data['settings'] ?? null;
+        $automaticWriteoff->amount = $data['amount'] ?? null;
 
         return $automaticWriteoff;
     }
