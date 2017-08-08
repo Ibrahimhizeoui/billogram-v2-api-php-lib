@@ -43,9 +43,22 @@ class SettingTest extends BaseTestCase
                                                             'vat_account_for_vat_12' => '', 'vat_account_for_vat_6' => '', 'account_receivable_account'=>'', 'client_funds_account'=>'', 'banking_account'=>'', 'interest_fee_account'=>'', 'reminder_fee_account'=>'',
                                                             'rounding_account'=>'', 'factoring_receivable_account'=>'', 'non_allocated_account'=>'', 'income_payout_account'=>'', 'written_down_receivables_account'=>'', 'expected_loss_account'=>'',
                                                             'regional_sweden'=>['rotavdrag_account'=>''] ]);
-        $invoiceDefault = InvoiceDefaults::createFromArray(['default_message'=> 'hey hey', 'default_messagedefault_message'=> 8.5, 'default_reminder_fee'=> 10, 'default_invoice_fee'=> 30,
-                                                                'automatic_reminders'=>AutomaticReminder::createFromArray(['delay_days'=>5,'message'=>'HEY'])]);
+        $invoices = InvoiceDefaults::createFromArray(['default_message'=> 'hey hey', 'default_messagedefault_message'=> 8.5, 'default_reminder_fee'=> 10, 'default_invoice_fee'=> 30,
+                                                            'automatic_reminders'=>AutomaticReminder::createFromArray(['delay_days'=>5,'message'=>'HEY']),
+                                                            'automatic_collection'=>AutomaticReminder::createFromArray(['settings'=>'all_fees','amount'=>100])]);
         $setting = $setting->withContact($contact);
+        $setting = $setting->withBusinessAddress($address);
+        $setting = $setting->withVisitingAddress($visitingAddress);
+        $setting = $setting->withInvoiceAddress($invoiceAddress);
+        $setting = $setting->withPayment($payment);
+        $setting = $setting->withTax($tax);
+        $setting = $setting->withBookkeeping($bookkeeping);
+        $setting = $setting->withInvoices($invoices);
+        $cacheClient = $this->getHttpClient();
+        $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
+        $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
+        $apiClient = BillogramClient::configure($httpClientConfigurator);
+        $setting = $apiClient->setting()->update();
         $this->assertInstanceOf(Setting::class, $setting);
     }
 

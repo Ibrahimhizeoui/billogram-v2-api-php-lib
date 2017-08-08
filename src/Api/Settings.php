@@ -26,4 +26,22 @@ class Settings extends HttpApi
 
         return $this->hydrator->hydrate($response, Setting::class);
     }
+
+    /**
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @link https://billogram.com/api/documentation#settings_fetch
+     */
+    public function update()
+    {
+        $response = $this->httpPUT('/settings');
+        if (!$this->hydrator) {
+            return $response;
+        }
+        // Use any valid status code here
+        if ($response->getStatusCode() !== 200) {
+            $this->handleErrors($response);
+        }
+
+        return $this->hydrator->hydrate($response, Setting::class);
+    }
 }
