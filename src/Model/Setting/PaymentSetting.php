@@ -127,7 +127,7 @@ class PaymentSetting implements CreatableFromArray
         $paymentSetting->domesticBankAccount = ['account_no' => $data['domestic_bank_account']['account_no'], 'clearing_no' => $data['domestic_bank_account']['clearing_no']] ?? null;
         $paymentSetting->internationalBankAccount = ['bank' => $data['international_bank_account']['bank'], 'iban' => $data['international_bank_account']['iban'], 'bic' => $data['international_bank_account']['bic'], 'swift' => $data['international_bank_account']['swift']] ?? null;
 
-        return null;
+        return $paymentSetting;
     }
 
     public function toArray()

@@ -142,10 +142,10 @@ class Contact implements CreatableFromArray
     public static function createFromArray(array $data)
     {
         $contact = new self();
-        $contact->name = $data['name'];
-        $contact->email = $data['email'];
-        $contact->phone = $data['phone'];
-        $contact->www = $data['www'];
+        $contact->name = $data['name'] ?? null;
+        $contact->email = $data['email'] ?? null;
+        $contact->phone = $data['phone'] ?? null;
+        $contact->www = $data['www'] ?? null;
 
         return $contact;
     }

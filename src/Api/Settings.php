@@ -4,6 +4,26 @@ declare(strict_types=1);
 
 namespace Billogram\Api;
 
+use Billogram\Model\Setting\Setting;
+use GuzzleHttp\Psr7\Response;
+
 class Settings extends HttpApi
 {
+    /**
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @link https://billogram.com/api/documentation#settings_fetch
+     */
+    public function fetch()
+    {
+        $response = $this->httpGet('/settings');
+        if (!$this->hydrator) {
+            return $response;
+        }
+        // Use any valid status code here
+        if ($response->getStatusCode() !== 200) {
+            $this->handleErrors($response);
+        }
+
+        return $this->hydrator->hydrate($response, Setting::class);
+    }
 }

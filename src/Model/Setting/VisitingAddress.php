@@ -18,11 +18,11 @@ class VisitingAddress extends BaseAddress
     public static function createFromArray(array $data)
     {
         $visitingAddress = new self();
-        $visitingAddress->careOf = $data['careof'];
-        $visitingAddress->streetAddress = $data['street_address'];
-        $visitingAddress->zipCode = $data['zipcode'];
-        $visitingAddress->city = $data['city'];
-        $visitingAddress->country = $data['country'];
+        $visitingAddress->careOf = $data['careof'] ?? null;
+        $visitingAddress->streetAddress = $data['street_address'] ?? null;
+        $visitingAddress->zipCode = $data['zipcode'] ?? null;
+        $visitingAddress->city = $data['city'] ?? null;
+        $visitingAddress->country = $data['country'] ?? null;
 
         return $visitingAddress;
     }

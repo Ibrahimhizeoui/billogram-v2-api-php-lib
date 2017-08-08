@@ -537,12 +537,93 @@ class BookkeepingSetting implements CreatableFromArray
      */
     public static function createFromArray(array $data)
     {
-        return null;
+        $bookkeeping = new self();
+        $bookkeeping->incomeAccountForVat25 = $data['income_account_for_vat_25'] ?? null;
+        $bookkeeping->incomeAccountForVat12 = $data['income_account_for_vat_12'] ?? null;
+        $bookkeeping->incomeAccountForVat6 = $data['income_account_for_vat_06'] ?? null;
+        $bookkeeping->incomeAccountForVat0 = $data['income_account_for_vat_0'] ?? null;
+        $bookkeeping->reversedVatAccount = $data['reversed_vat_account'] ?? null;
+        $bookkeeping->vatAccountForVat25 = $data['vat_account_for_vat_25'] ?? null;
+        $bookkeeping->vatAccountForVat12 = $data['vat_account_for_vat_12'] ?? null;
+        $bookkeeping->vatAccountForVat6 = $data['vat_account_for_vat_6'] ?? null;
+        $bookkeeping->accountReceivableAccount = $data['account_receivable_account'] ?? null;
+        $bookkeeping->clientFundsAccount = $data['client_funds_account'] ?? null;
+        $bookkeeping->bankingAccount = $data['banking_account'] ?? null;
+        $bookkeeping->interestFeeAccount = $data['interest_fee_account'] ?? null;
+        $bookkeeping->reminderFeeAccount = $data['reminder_fee_account'] ?? null;
+        $bookkeeping->factoringReceivableAccount = $data['factoring_receivable_account'] ?? null;
+        $bookkeeping->nonAllocatedAccount = $data['non_allocated_account'] ?? null;
+        $bookkeeping->incomePayoutAccount = $data['income_payout_account'] ?? null;
+        $bookkeeping->writtenDownReceivablesAccount = $data['written_down_receivables_account'] ?? null;
+        $bookkeeping->expectedLossAccount = $data['expected_loss_account'] ?? null;
+        $bookkeeping->regionalSweden['rotavdrag_account'] = $data['regional_sweden']['rotavdrag_account'] ?? null;
+
+        return $bookkeeping;
     }
 
     public function toArray()
     {
         $data = [];
+        if ($this->incomeAccountForVat25 !== null) {
+            $data['income_account_for_vat_25'] = $this->incomeAccountForVat25;
+        }
+        if ($this->incomeAccountForVat12 !== null) {
+            $data['income_account_for_vat_25'] = $this->incomeAccountForVat12;
+        }
+        if ($this->incomeAccountForVat6 !== null) {
+            $data['income_account_for_vat_6'] = $this->incomeAccountForVat6;
+        }
+        if ($this->incomeAccountForVat0 !== null) {
+            $data['income_account_for_vat_0'] = $this->incomeAccountForVat0;
+        }
+        if ($this->reversedVatAccount !== null) {
+            $data['reversed_vat_account'] = $this->reversedVatAccount;
+        }
+        if ($this->vatAccountForVat25 !== null) {
+            $data['vat_account_for_vat_25'] = $this->vatAccountForVat25;
+        }
+        if ($this->vatAccountForVat12 !== null) {
+            $data['vat_account_for_vat_12'] = $this->vatAccountForVat12;
+        }
+        if ($this->vatAccountForVat6 !== null) {
+            $data['vat_account_for_vat_6'] = $this->vatAccountForVat6;
+        }
+        if ($this->accountReceivableAccount !== null) {
+            $data['account_receivable_account'] = $this->accountReceivableAccount;
+        }
+        if ($this->clientFundsAccount !== null) {
+            $data['client_funds_account'] = $this->clientFundsAccount;
+        }
+        if ($this->bankingAccount !== null) {
+            $data['banking_account'] = $this->bankingAccount;
+        }
+        if ($this->interestFeeAccount !== null) {
+            $data['interest_fee_account'] = $this->interestFeeAccount;
+        }
+        if ($this->reminderFeeAccount !== null) {
+            $data['reminder_fee_account'] = $this->reminderFeeAccount;
+        }
+        if ($this->roundingAccount !== null) {
+            $data['rounding_account'] = $this->roundingAccount;
+        }
+        if ($this->factoringReceivableAccount !== null) {
+            $data['factoring_receivable_account'] = $this->factoringReceivableAccount;
+        }
+        if ($this->nonAllocatedAccount !== null) {
+            $data['non_allocated_account'] = $this->nonAllocatedAccount;
+        }
+        if ($this->incomePayoutAccount !== null) {
+            $data['income_payout_account'] = $this->incomePayoutAccount;
+        }
+        if ($this->writtenDownReceivablesAccount !== null) {
+            $data['written_down_receivables_account'] = $this->writtenDownReceivablesAccount;
+        }
+        if ($this->expectedLossAccount !== null) {
+            $data['expected_loss_account'] = $this->expectedLossAccount;
+        }
+        if ($this->regionalSweden['rotavdrag_account'] !== null) {
+            $data['regional_sweden']['rotavdrag_account'] = $this->regionalSweden['rotavdrag_account'];
+        }
 
         return $data;
     }

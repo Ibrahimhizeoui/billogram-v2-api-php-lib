@@ -44,12 +44,12 @@ class InvoiceAddress extends BaseAddress
     public static function createFromArray(array $data)
     {
         $invoiceAddress = new self();
-        $invoiceAddress->careOf = $data['careof'];
-        $invoiceAddress->streetAddress = $data['street_address'];
-        $invoiceAddress->zipCode = $data['zipcode'];
-        $invoiceAddress->city = $data['city'];
-        $invoiceAddress->country = $data['country'];
-        $invoiceAddress->email = $data['email'];
+        $invoiceAddress->careOf = $data['careof'] ?? null;
+        $invoiceAddress->streetAddress = $data['street_address'] ?? null;
+        $invoiceAddress->zipCode = $data['zipcode'] ?? null;
+        $invoiceAddress->city = $data['city'] ?? null;
+        $invoiceAddress->country = $data['country'] ?? null;
+        $invoiceAddress->email = $data['email'] ?? null;
 
         return $invoiceAddress;
     }

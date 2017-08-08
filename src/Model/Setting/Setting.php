@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Billogram\Model\Setting;
 
 use Billogram\Model\CreatableFromArray;
+use Billogram\Model\Invoice\Invoices;
 
 class Setting implements CreatableFromArray
 {
@@ -281,14 +282,14 @@ class Setting implements CreatableFromArray
         $setting->name = $data['data']['name'] ?? null;
         $setting->orgNo = $data['data']['org_no'] ?? null;
         $setting->contact = Contact::createFromArray($data['data']['contact']);
-        $setting->businessAddress = Contact::createFromArray($data['data']['address']);
-        $setting->visitingAddress = Contact::createFromArray($data['data']['visiting_address']);
-        $setting->invoiceAddress = Contact::createFromArray($data['data']['invoice_address']);
-        $setting->payment = Contact::createFromArray($data['data']['payment']);
-        $setting->bookkeeping = Contact::createFromArray($data['data']['bookkeeping']);
-        $setting->invoices = Contact::createFromArray($data['data']['invoices']);
+        $setting->businessAddress = BusinessAddress::createFromArray($data['data']['address']);
+        $setting->visitingAddress = VisitingAddress::createFromArray($data['data']['visiting_address']);
+        $setting->invoiceAddress = InvoiceAddress::createFromArray($data['data']['invoice_address']);
+        $setting->payment = PaymentSetting::createFromArray($data['data']['payment']);
+        $setting->bookkeeping = BookkeepingSetting::createFromArray($data['data']['bookkeeping']);
+        $setting->invoices = InvoiceDefaults::createFromArray($data['data']['invoices']);
 
-        return null;
+        return $setting;
     }
 
     public function toArray()

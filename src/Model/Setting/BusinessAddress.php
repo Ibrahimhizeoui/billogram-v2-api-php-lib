@@ -18,11 +18,11 @@ class BusinessAddress extends BaseAddress
     public static function createFromArray(array $data)
     {
         $businessAddress = new self();
-        $businessAddress->careOf = $data['careof'];
-        $businessAddress->streetAddress = $data['street_address'];
-        $businessAddress->zipCode = $data['zipcode'];
-        $businessAddress->city = $data['city'];
-        $businessAddress->country = $data['country'];
+        $businessAddress->careOf = $data['careof'] ?? null;
+        $businessAddress->streetAddress = $data['street_address'] ?? null;
+        $businessAddress->zipCode = $data['zipcode'] ?? null;
+        $businessAddress->city = $data['city'] ?? null;
+        $businessAddress->country = $data['country']?? null;
 
         return $businessAddress;
     }
