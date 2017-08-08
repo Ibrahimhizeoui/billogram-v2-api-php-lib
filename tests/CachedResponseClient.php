@@ -1,10 +1,14 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Billogram\Tests;
+
 use Http\Client\HttpClient;
 use Http\Message\StreamFactory\GuzzleStreamFactory;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
+
 /**
  * Serve responses from local file cache.
  *
@@ -24,6 +28,7 @@ class CachedResponseClient implements HttpClient
      * @var string
      */
     private $cacheDir;
+
     /**
      * @param HttpClient  $delegate
      * @param string      $cacheDir
@@ -35,6 +40,7 @@ class CachedResponseClient implements HttpClient
         $this->cacheDir = $cacheDir;
         $this->apiKey = $apiKey;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -48,11 +54,13 @@ class CachedResponseClient implements HttpClient
         $file = sprintf('%s/%s_%s', $this->cacheDir, $host, sha1($url));
         if (is_file($file) && is_readable($file)) {
             $header = json_decode(file_get_contents($file.'headers.txt'), true);
+
             return new Response(200, $header, (new GuzzleStreamFactory())->createStream(unserialize(file_get_contents($file))));
         }
         $response = $this->delegate->sendRequest($request);
         file_put_contents($file, serialize($response->getBody()->getContents()));
         file_put_contents($file.'headers.txt', json_encode($response->getHeaders()));
+
         return $response;
     }
 }

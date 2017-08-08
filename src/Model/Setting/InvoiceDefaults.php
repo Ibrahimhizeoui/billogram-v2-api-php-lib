@@ -53,12 +53,14 @@ class InvoiceDefaults implements CreatableFromArray
 
     /**
      * @param string $defaultMessage
+     *
      * @return InvoiceDefaults
      */
     public function withDefaultMessage(string $defaultMessage)
     {
         $new = clone $this;
         $new->defaultMessage = $defaultMessage;
+
         return $new;
     }
 
@@ -72,12 +74,14 @@ class InvoiceDefaults implements CreatableFromArray
 
     /**
      * @param int $defaultInterestRate
+     *
      * @return InvoiceDefaults
      */
     public function withDefaultInterestRate(int $defaultInterestRate)
     {
         $new = clone $this;
         $new->defaultInterestRate = $defaultInterestRate;
+
         return $new;
     }
 
@@ -91,12 +95,14 @@ class InvoiceDefaults implements CreatableFromArray
 
     /**
      * @param int $defaultReminderFee
+     *
      * @return InvoiceDefaults
      */
     public function withDefaultReminderFee(int $defaultReminderFee)
     {
         $new = clone $this;
         $new->defaultReminderFee = $defaultReminderFee;
+
         return $new;
     }
 
@@ -110,12 +116,14 @@ class InvoiceDefaults implements CreatableFromArray
 
     /**
      * @param int $defaultInvoiceFee
+     *
      * @return InvoiceDefaults
      */
     public function withDefaultInvoiceFee(int $defaultInvoiceFee)
     {
         $new = clone $this;
         $new->defaultInvoiceFee = $defaultInvoiceFee;
+
         return $new;
     }
 
@@ -129,12 +137,14 @@ class InvoiceDefaults implements CreatableFromArray
 
     /**
      * @param AutomaticReminder $automaticReminders
+     *
      * @return InvoiceDefaults
      */
     public function withAutomaticReminders(AutomaticReminder $automaticReminders)
     {
         $new = clone $this;
         $new->automaticReminders = $automaticReminders;
+
         return $new;
     }
 
@@ -148,12 +158,14 @@ class InvoiceDefaults implements CreatableFromArray
 
     /**
      * @param AutomaticWriteOff $automaticWriteoff
+     *
      * @return InvoiceDefaults
      */
     public function withAutomaticWriteoff(AutomaticWriteOff $automaticWriteoff)
     {
         $new = clone $this;
         $new->automaticWriteoff = $automaticWriteoff;
+
         return $new;
     }
 
@@ -167,15 +179,16 @@ class InvoiceDefaults implements CreatableFromArray
 
     /**
      * @param AutomaticCollection $automaticCollection
+     *
      * @return InvoiceDefaults
      */
     public function withAutomaticCollection(AutomaticCollection $automaticCollection)
     {
         $new = clone $this;
         $new->automaticCollection = $automaticCollection;
+
         return $new;
     }
-
 
     /**
      * Create an API response object from the HTTP response from the API server.
@@ -194,34 +207,34 @@ class InvoiceDefaults implements CreatableFromArray
         $invoiceDefault->automaticReminders = AutomaticReminder::createFromArray($data['automatic_reminders']);
         $invoiceDefault->automaticWriteoff = AutomaticWriteOff::createFromArray($data['automatic_writeoff']);
         $invoiceDefault->automaticCollection = AutomaticCollection::createFromArray($data['automatic_collection']);
+
         return $invoiceDefault;
     }
 
     public function toArray()
     {
         $data = [];
-        if ($this->defaultMessage !== null){
+        if ($this->defaultMessage !== null) {
             $data['default_message'] = $this->defaultMessage;
         }
-        if ($this->defaultInterestRate !== null){
+        if ($this->defaultInterestRate !== null) {
             $data['default_interest_rate'] = $this->defaultInterestRate;
         }
-        if ($this->defaultReminderFee !== null){
+        if ($this->defaultReminderFee !== null) {
             $data['default_reminder_fee'] = $this->defaultReminderFee;
         }
-        if ($this->defaultInvoiceFee !== null){
+        if ($this->defaultInvoiceFee !== null) {
             $data['default_invoice_fee'] = $this->defaultInvoiceFee;
         }
-        if ($this->automaticReminders !== null){
+        if ($this->automaticReminders !== null) {
             $data['automatic_reminders'] = $this->automaticReminders->toArray();
         }
-        if ($this->automaticWriteoff !== null){
+        if ($this->automaticWriteoff !== null) {
             $data['automatic_reminders'] = $this->automaticWriteoff->toArray();
         }
-        if ($this->automaticCollection !== null){
+        if ($this->automaticCollection !== null) {
             $data['automatic_reminders'] = $this->automaticCollection->toArray();
         }
-
 
         return $data;
     }

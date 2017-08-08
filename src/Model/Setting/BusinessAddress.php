@@ -22,7 +22,7 @@ class BusinessAddress extends BaseAddress
         $businessAddress->streetAddress = $data['street_address'] ?? null;
         $businessAddress->zipCode = $data['zipcode'] ?? null;
         $businessAddress->city = $data['city'] ?? null;
-        $businessAddress->country = $data['country']?? null;
+        $businessAddress->country = $data['country'] ?? null;
 
         return $businessAddress;
     }

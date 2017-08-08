@@ -1,23 +1,22 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\CreatableFromArray;
 
 class AutomaticReminder implements CreatableFromArray
 {
     /**
-     * var int
+     * var int.
      */
     private $delayDays;
 
     /**
-     * var string
+     * var string.
      */
     private $message;
-
 
     /**
      * @return int
@@ -29,12 +28,14 @@ class AutomaticReminder implements CreatableFromArray
 
     /**
      * @param $delayDays
+     *
      * @return AutomaticReminder
      */
     public function withDelayDays($delayDays)
     {
         $new = clone $this;
         $new->delayDays = $delayDays;
+
         return $new;
     }
 
@@ -48,16 +49,19 @@ class AutomaticReminder implements CreatableFromArray
 
     /**
      * @param $message
+     *
      * @return AutomaticReminder
      */
     public function withMessage($message)
     {
         $new = clone $this;
         $new->message = $message;
+
         return $new;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
         if ($this->delayDays !== null) {
             $data['delay_days'] = $this->delayDays;

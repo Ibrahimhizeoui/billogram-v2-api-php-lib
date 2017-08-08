@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Billogram\Api;
 
 use Billogram\Model\Setting\Setting;
-use GuzzleHttp\Psr7\Response;
 
 class Settings extends HttpApi
 {
     /**
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @link https://billogram.com/api/documentation#settings_fetch
+     *
+     * @see https://billogram.com/api/documentation#settings_fetch
      */
     public function fetch()
     {
@@ -29,7 +29,8 @@ class Settings extends HttpApi
 
     /**
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @link https://billogram.com/api/documentation#settings_fetch
+     *
+     * @see https://billogram.com/api/documentation#settings_fetch
      */
     public function update(Setting $setting)
     {

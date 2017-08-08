@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Setting;
-
 
 use Billogram\Model\CreatableFromArray;
 
@@ -28,12 +28,14 @@ class AutomaticWriteOff implements CreatableFromArray
 
     /**
      * @param string $setting
+     *
      * @return AutomaticWriteOff
      */
     public function withSetting(string $setting)
     {
         $new = clone $this;
         $new->setting = $setting;
+
         return $new;
     }
 
@@ -47,25 +49,26 @@ class AutomaticWriteOff implements CreatableFromArray
 
     /**
      * @param int $amount
+     *
      * @return AutomaticWriteOff
      */
     public function withAmount(int $amount)
     {
         $new = clone $this;
         $new->amount = $amount;
+
         return $new;
     }
 
-
-
-    public function toArray(){
+    public function toArray()
+    {
         $data = [];
-        if($this->setting !== null && $this->amount !== null){
+        if ($this->setting !== null && $this->amount !== null) {
             $data['settings'] = $this->setting;
             $data['amount'] = $this->amount;
         }
 
-    return $data;
+        return $data;
     }
 
     /**
