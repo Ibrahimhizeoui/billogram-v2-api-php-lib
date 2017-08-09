@@ -17,6 +17,9 @@ use Billogram\Model\Setting\TaxSetting;
 use Billogram\Model\Setting\VisitingAddress;
 use Billogram\Tests\BaseTestCase;
 
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 class SettingTest extends BaseTestCase
 {
     public function testFetch()
@@ -25,7 +28,7 @@ class SettingTest extends BaseTestCase
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
-        $settingFinal = $apiClient->setting()->fetch();
+        $settingFinal = $apiClient->settings()->fetch();
         $this->assertInstanceOf(Setting::class, $settingFinal);
     }
 
@@ -60,7 +63,7 @@ class SettingTest extends BaseTestCase
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
-        $settingFinal = $apiClient->setting()->update($setting);
+        $settingFinal = $apiClient->settings()->update($setting);
         $this->assertInstanceOf(Setting::class, $settingFinal);
     }
 

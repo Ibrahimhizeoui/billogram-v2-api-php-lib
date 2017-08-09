@@ -6,7 +6,10 @@ namespace Billogram\Model\Setting;
 
 use Billogram\Model\CreatableFromArray;
 
-class AutomaticCollection implements CreatableFromArray
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
+class AutomaticReminderCollection implements CreatableFromArray
 {
     /**
      * var int.
@@ -29,7 +32,7 @@ class AutomaticCollection implements CreatableFromArray
     /**
      * @param $delayDays
      *
-     * @return AutomaticCollection
+     * @return AutomaticReminderCollection
      */
     public function withDelayDays($delayDays)
     {
@@ -50,7 +53,7 @@ class AutomaticCollection implements CreatableFromArray
     /**
      * @param $message
      *
-     * @return AutomaticCollection
+     * @return AutomaticReminderCollection
      */
     public function withMessage($message)
     {

@@ -6,6 +6,9 @@ namespace Billogram\Api;
 
 use Billogram\Model\Setting\Setting;
 
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 class Settings extends HttpApi
 {
     /**

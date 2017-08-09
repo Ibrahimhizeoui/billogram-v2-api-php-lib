@@ -6,6 +6,9 @@ namespace Billogram\Model\Setting;
 
 use Billogram\Model\BaseAddress;
 
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 class VisitingAddress extends BaseAddress
 {
     /**

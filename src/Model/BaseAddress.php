@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 namespace Billogram\Model;
-
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 abstract class BaseAddress implements CreatableFromArray
 {
     /**

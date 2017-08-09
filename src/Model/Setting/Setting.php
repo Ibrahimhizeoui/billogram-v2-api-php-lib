@@ -7,6 +7,9 @@ namespace Billogram\Model\Setting;
 use Billogram\Model\CreatableFromArray;
 use Billogram\Model\Invoice\Invoices;
 
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
 class Setting implements CreatableFromArray
 {
     /**

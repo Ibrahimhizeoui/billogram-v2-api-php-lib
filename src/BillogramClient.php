@@ -110,7 +110,7 @@ final class BillogramClient
     /**
      * @return Api\Settings
      */
-    public function setting(): Settings
+    public function settings(): Settings
     {
         return new Api\Settings($this->httpClient, $this->hydrator, $this->requestBuilder);
     }

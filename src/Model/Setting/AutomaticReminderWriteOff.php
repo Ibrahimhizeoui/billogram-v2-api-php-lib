@@ -6,7 +6,10 @@ namespace Billogram\Model\Setting;
 
 use Billogram\Model\CreatableFromArray;
 
-class AutomaticWriteOff implements CreatableFromArray
+/**
+ * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
+ */
+class AutomaticReminderWriteOff implements CreatableFromArray
 {
     /**
      * @var string
@@ -29,7 +32,7 @@ class AutomaticWriteOff implements CreatableFromArray
     /**
      * @param string $setting
      *
-     * @return AutomaticWriteOff
+     * @return AutomaticReminderWriteOff
      */
     public function withSetting(string $setting)
     {
@@ -50,7 +53,7 @@ class AutomaticWriteOff implements CreatableFromArray
     /**
      * @param int $amount
      *
-     * @return AutomaticWriteOff
+     * @return AutomaticReminderWriteOff
      */
     public function withAmount(int $amount)
     {
