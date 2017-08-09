@@ -11,6 +11,7 @@ namespace Billogram;
 use Billogram\Api\Customer;
 use Billogram\Api\Invoice;
 use Billogram\Api\Item;
+use Billogram\Api\LogoType;
 use Billogram\Hydrator\ModelHydrator;
 use Billogram\Hydrator\Hydrator;
 use Http\Client\HttpClient;
@@ -104,5 +105,13 @@ final class BillogramClient
     public function invoices(): Invoice
     {
         return new Api\Invoice($this->httpClient, $this->hydrator, $this->requestBuilder);
+    }
+
+    /**
+     * @return Api\LogoType
+     */
+    public function logotype(): LogoType
+    {
+        return new Api\LogoType($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
 }
