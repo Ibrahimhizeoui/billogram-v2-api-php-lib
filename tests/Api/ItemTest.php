@@ -62,7 +62,6 @@ class ItemTest extends BaseTestCase
     }
 
     public function testDelete(int $itemNo = 9)
-
     {
         $cacheClient = $this->getHttpClient();
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
