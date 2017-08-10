@@ -43,6 +43,6 @@ class LogoTypeTest extends BaseTestCase
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
         $logoTypeFetched = $apiClient->logotype()->get();
-        $this->assertInstanceOf(LogoType::class, $logoTypefetched);
+        $this->assertInstanceOf(LogoType::class, $logoTypeFetched);
     }
 }
