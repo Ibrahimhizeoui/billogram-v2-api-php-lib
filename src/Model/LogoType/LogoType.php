@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
  namespace Billogram\Model\LogoType;
+use Billogram\Exception\Domain\ValidationException;
 use Billogram\Model\CreatableFromArray;
 
 class LogoType implements CreatableFromArray
@@ -18,7 +19,7 @@ class LogoType implements CreatableFromArray
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent()
     {
         return $this->content;
     }
@@ -37,7 +38,7 @@ class LogoType implements CreatableFromArray
     /**
      * @return string
      */
-    public function getFileType(): string
+    public function getFileType()
     {
         return $this->fileType;
     }
@@ -59,10 +60,15 @@ class LogoType implements CreatableFromArray
      *
      * @param array $data
      *
-     * @return self
+     * @return LogoType
+     *
+     * @throws ValidationException
      */
     public static function createFromArray(array $data)
     {
+        if ($data['status'] === "INVALID_PARAMETER" && array_key_exists('message',$data['data'])){
+            throw new ValidationException($data['data']['message']);
+        }
         $logoType = new self();
         $logoType->content = $data['content'] ?? null;
         $logoType->fileType = $data['file_type'] ?? null;
