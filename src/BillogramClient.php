@@ -111,7 +111,7 @@ final class BillogramClient
     /**
      * @return Api\Report
      */
-    public function reports(): Report
+    public function report(): Report
     {
         return new Api\Report($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
