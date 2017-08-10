@@ -16,7 +16,7 @@ class LogoType extends HttpApi
      *
      * @see https://billogram.com/api/documentation#logotype_calls
      */
-    public function fetch()
+    public function get()
     {
         $response = $this->httpGet('/logotype');
         if (!$this->hydrator) {
@@ -33,7 +33,7 @@ class LogoType extends HttpApi
      *
      * @see https://billogram.com/api/documentation#logotype_calls
      */
-    public function post(Model $logoType)
+    public function upload(Model $logoType)
     {
         $response = $this->httpPost('/logotype', $logoType->toArray());
         if (!$this->hydrator) {
@@ -43,22 +43,5 @@ class LogoType extends HttpApi
         return $this->hydrator->hydrate($response, Model::class);
     }
 
-    /**
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     *
-     * @see https://billogram.com/api/documentation#logotype_calls
-     */
-    public function get()
-    {
-        $response = $this->httpGet('/logotype');
-        if (!$this->hydrator) {
-            return $response;
-        }
-        // Use any valid status code here
-        if ($response->getStatusCode() !== 200) {
-            $this->handleErrors($response);
-        }
 
-        return $this->hydrator->hydrate($response, Model::class);
-    }
 }

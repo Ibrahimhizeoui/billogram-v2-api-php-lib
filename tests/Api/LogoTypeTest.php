@@ -22,7 +22,7 @@ class LogoTypeTest extends BaseTestCase
         return dirname(__DIR__).'/.cache';
     }
 
-    public function testPost()
+    public function testUpload()
     {
         $logoType = new LogoType();
         $image = __DIR__.'/../test.png';
@@ -32,7 +32,7 @@ class LogoTypeTest extends BaseTestCase
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
-        $logoTypeCreated = $apiClient->logotype()->post($logoType);
+        $logoTypeCreated = $apiClient->logotype()->upload($logoType);
         $this->assertInstanceOf(LogoType::class, $logoTypeCreated);
     }
 
@@ -42,7 +42,7 @@ class LogoTypeTest extends BaseTestCase
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
-        $logoTypefetched = $apiClient->logotype()->get();
+        $logoTypeFetched = $apiClient->logotype()->get();
         $this->assertInstanceOf(LogoType::class, $logoTypefetched);
     }
 }
