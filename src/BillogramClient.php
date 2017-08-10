@@ -115,7 +115,8 @@ final class BillogramClient
     {
         return new Api\Report($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
-     /**
+
+    /**
      * @return Api\Settings
      */
     public function settings(): Settings
