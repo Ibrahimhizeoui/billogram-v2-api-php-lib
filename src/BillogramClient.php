@@ -12,6 +12,7 @@ use Billogram\Api\Customer;
 use Billogram\Api\Invoice;
 use Billogram\Api\Item;
 use Billogram\Api\Report;
+use Billogram\Api\Settings;
 use Billogram\Hydrator\ModelHydrator;
 use Billogram\Hydrator\Hydrator;
 use Http\Client\HttpClient;
@@ -108,10 +109,17 @@ final class BillogramClient
     }
 
     /**
-     * @return Report
+     * @return Api\Report
      */
     public function reports(): Report
     {
         return new Api\Report($this->httpClient, $this->hydrator, $this->requestBuilder);
+    }
+     /**
+     * @return Api\Settings
+     */
+    public function settings(): Settings
+    {
+        return new Api\Settings($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
 }
