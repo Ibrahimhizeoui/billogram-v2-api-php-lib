@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Tests\Api;
-
 
 use Billogram\BillogramClient;
 use Billogram\HttpClientConfigurator;
@@ -20,7 +20,8 @@ class ReportTest extends BaseTestCase
         return dirname(__DIR__).'/.cache';
     }
 
-   public function testGet(){
+    public function testGet()
+    {
         $httpClient = $this->getHttpClient();
         $httpClientConfigurator = new HttpClientConfigurator($httpClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
@@ -29,7 +30,8 @@ class ReportTest extends BaseTestCase
         $this->assertInstanceOf(Report::class, $reportFetched);
     }
 
-    public function testLists(){
+    public function testLists()
+    {
         $cacheClient = $this->getHttpClient();
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
@@ -37,6 +39,4 @@ class ReportTest extends BaseTestCase
         $reportCollection = $apiClient->reports()->search(['page' => '1']);
         $this->assertInstanceOf(ReportCollection::class, $reportCollection);
     }
-
-
 }

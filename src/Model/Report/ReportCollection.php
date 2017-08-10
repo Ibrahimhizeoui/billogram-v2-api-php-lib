@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Model\Report;
-
 
 use Billogram\Model\CreatableFromArray;
 
@@ -37,6 +37,4 @@ class ReportCollection implements CreatableFromArray
 
         return new self($reports);
     }
-
-
 }

@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Api;
 
-
 use Billogram\Model\Report\ReportCollection;
-use \Billogram\Model\Report\Report as Model;
+use Billogram\Model\Report\Report as Model;
 
 class Report extends HttpApi
 {
@@ -14,7 +14,7 @@ class Report extends HttpApi
      *
      * @return string|array
      *
-     * @link https://billogram.com/api/documentation#reports
+     * @see https://billogram.com/api/documentation#reports
      */
     public function fetch(string $fileName)
     {
@@ -35,12 +35,12 @@ class Report extends HttpApi
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *
-     * @link https://billogram.com/api/documentation#reports
+     * @see https://billogram.com/api/documentation#reports
      */
     public function search(array $param = [])
     {
         $param = array_merge(['page' => 1, 'page_size' => 100], $param);
-        $response = $this->httpGet('/report',$param);
+        $response = $this->httpGet('/report', $param);
         if (!$this->hydrator) {
             return $response;
         }
@@ -51,6 +51,4 @@ class Report extends HttpApi
 
         return $this->hydrator->hydrate($response, ReportCollection::class);
     }
-
-
 }
