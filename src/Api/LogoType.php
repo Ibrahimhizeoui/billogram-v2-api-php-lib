@@ -42,6 +42,4 @@ class LogoType extends HttpApi
 
         return $this->hydrator->hydrate($response, Model::class);
     }
-
-
 }
