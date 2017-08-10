@@ -1,8 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Api;
-use \Billogram\Model\LogoType\LogoType as Model;
+
+use Billogram\Model\LogoType\LogoType as Model;
+
 /**
  * @author Ibrahim Hizeoui <ibrahimhizeoui@gmail.com>
  */
@@ -32,13 +35,14 @@ class LogoType extends HttpApi
      */
     public function post(Model $logoType)
     {
-        $response = $this->httpPost('/logotype',$logoType->toArray());
+        $response = $this->httpPost('/logotype', $logoType->toArray());
         if (!$this->hydrator) {
             return $response;
         }
 
         return $this->hydrator->hydrate($response, Model::class);
     }
+
     /**
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *

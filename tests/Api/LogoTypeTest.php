@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Billogram\Tests\Api;
-
 
 use Billogram\BillogramClient;
 use Billogram\HttpClientConfigurator;
@@ -25,7 +25,7 @@ class LogoTypeTest extends BaseTestCase
     public function testPost()
     {
         $logoType = new LogoType();
-        $image = __DIR__."/../test.png";
+        $image = __DIR__.'/../test.png';
         $logoType = $logoType->withContent(base64_encode(file_get_contents($image)));
         $logoType = $logoType->withFileType(mime_content_type($image));
         $cacheClient = $this->getHttpClient();

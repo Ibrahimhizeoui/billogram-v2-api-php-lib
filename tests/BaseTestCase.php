@@ -29,7 +29,6 @@ abstract class BaseTestCase extends TestCase
      */
     protected function getHttpClient($apiKey = null)
     {
-
         if (null !== $cacheDir = $this->getCacheDir()) {
             return new CachedResponseClient(new HttplugClient(), $cacheDir, $apiKey);
         } else {
