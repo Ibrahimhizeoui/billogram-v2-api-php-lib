@@ -47,4 +47,3 @@ class LogoTypeTest extends BaseTestCase
         $this->assertInstanceOf(LogoType::class, $logoTypeFetched);
     }
 }
-
