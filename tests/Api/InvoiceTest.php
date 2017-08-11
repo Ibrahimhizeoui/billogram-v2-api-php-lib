@@ -89,5 +89,4 @@ class InvoiceTest extends BaseTestCase
         $invoices = $apiClient->invoices()->search(['page' => 1]);
         $this->assertInstanceOf(InvoiceCollection::class, $invoices);
     }
-
 }
