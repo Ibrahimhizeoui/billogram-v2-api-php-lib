@@ -61,7 +61,7 @@ class ItemTest extends BaseTestCase
         $this->assertInstanceOf(Item::class, $itemUpdated);
     }
 
-    public function testDelete(int $itemNo = 6)
+    public function testDelete(int $itemNo = 10)
     {
         $cacheClient = $this->getHttpClient();
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
@@ -71,7 +71,7 @@ class ItemTest extends BaseTestCase
         $this->assertInstanceOf(Item::class, $customerDeleted);
     }
 
-    public function testFetch(int $itemNo = 5)
+    public function testFetch(int $itemNo = 15)
     {
         $cacheClient = $this->getHttpClient();
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);

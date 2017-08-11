@@ -22,7 +22,7 @@ class LogoType implements CreatableFromArray
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -43,7 +43,7 @@ class LogoType implements CreatableFromArray
     /**
      * @return string
      */
-    public function getFileType()
+    public function getFileType(): string
     {
         return $this->fileType;
     }
@@ -66,7 +66,7 @@ class LogoType implements CreatableFromArray
      *
      * @param array $data
      *
-     * @return LogoType
+     * @return self
      *
      * @throws ValidationException
      */

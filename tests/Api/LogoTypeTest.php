@@ -25,6 +25,7 @@ class LogoTypeTest extends BaseTestCase
     public function testUpload()
     {
         $logoType = new LogoType();
+
         $image = __DIR__.'/../test.png';
         $logoType = $logoType->withContent(base64_encode(file_get_contents($image)));
         $logoType = $logoType->withFileType(mime_content_type($image));
@@ -46,3 +47,4 @@ class LogoTypeTest extends BaseTestCase
         $this->assertInstanceOf(LogoType::class, $logoTypeFetched);
     }
 }
+

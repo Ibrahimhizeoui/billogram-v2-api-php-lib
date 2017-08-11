@@ -22,6 +22,10 @@ class LogoType extends HttpApi
         if (!$this->hydrator) {
             return $response;
         }
+        // Use any valid status code here
+        if ($response->getStatusCode() !== 200) {
+            $this->handleErrors($response);
+        }
 
         return $this->hydrator->hydrate($response, Model::class);
     }
