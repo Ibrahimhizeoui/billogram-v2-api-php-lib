@@ -45,7 +45,7 @@ class InvoiceTest extends BaseTestCase
         $this->assertInstanceOf(Invoice::class, $invoiceCreated);
     }
 
-    /*public function testPut()
+    public function testPut()
     {
         $customer = new Customer();
         $customer = $customer->withCustomerNo(25);
@@ -88,5 +88,6 @@ class InvoiceTest extends BaseTestCase
         $apiClient = BillogramClient::configure($httpClientConfigurator);
         $invoices = $apiClient->invoices()->search(['page' => 1]);
         $this->assertInstanceOf(InvoiceCollection::class, $invoices);
-    }*/
+    }
+
 }
