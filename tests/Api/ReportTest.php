@@ -26,7 +26,7 @@ class ReportTest extends BaseTestCase
         $httpClientConfigurator = new HttpClientConfigurator($httpClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
-        $reportFetched = $apiClient->reports()->fetch('ff');
+        $reportFetched = $apiClient->report()->fetch('ff');
         $this->assertInstanceOf(Report::class, $reportFetched);
     }
 
@@ -36,7 +36,7 @@ class ReportTest extends BaseTestCase
         $httpClientConfigurator = new HttpClientConfigurator($cacheClient);
         $httpClientConfigurator->setAuth('20561-3vhGtAxH', '4eddc2ab063bdd53dc64836ff3a0c7bc');
         $apiClient = BillogramClient::configure($httpClientConfigurator);
-        $reportCollection = $apiClient->reports()->search(['page' => '1']);
+        $reportCollection = $apiClient->report()->search(['page' => '1']);
         $this->assertInstanceOf(ReportCollection::class, $reportCollection);
     }
 }
