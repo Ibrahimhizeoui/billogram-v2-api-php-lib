@@ -31,8 +31,6 @@ The following Client Library are central to the use of the Billogram service:
 
 First you need to register an account. it's recommend that you sign up on Billogram sandbox environment
 [Sandbox Billogram](https://billogram.com) or on [Billogram](https://billogram.com) ,then generate an API user
-
-
     
 ##### 1- How to Authentify to api :
 
@@ -151,7 +149,7 @@ $billogramClient = BillogramClient::create(userName,password);
  $settingFinal = $billogramClient->settings()->update($setting);
 ```
 ## Endpoints
-This repository contains an example API client for Billogram. The API for Billogram has the following endpoints.
+This repository contains an example API client for Billogram. The API for Billogram has the following endpoints
 
 | Method | URI | Parameters |
 | ------ | --- | ---------- |
