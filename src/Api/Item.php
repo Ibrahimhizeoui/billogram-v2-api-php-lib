@@ -36,8 +36,8 @@ class Item extends HttpApi
     }
 
     /**
-     * @param string   $itemNo
-     * @param array $param
+     * @param string $itemNo
+     * @param array  $param
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *
